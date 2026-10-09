@@ -1,4 +1,4 @@
-import { FolderOpen, User, FileText, Mail, Github, Settings } from 'lucide-react'
+import { FolderOpen, User, FileText, Mail, Github, Settings, Wallpaper } from 'lucide-react'
 import { useWindows } from './WindowContext'
 import { useSettings } from './SettingsContext'
 import { getWallpaper } from './wallpapers'
@@ -28,7 +28,8 @@ const apps = [
 
 export default function Desktop() {
   const { windows, open } = useWindows()
-  const { settings } = useSettings()
+  const { settings, update } = useSettings()
+  const isSpidey = settings.wallpaper === 'spiderman'
 
   const launch = (app, origin) => {
     if (app.href) return openExternal(app.href)
@@ -49,6 +50,16 @@ export default function Desktop() {
           </button>
         ))}
       </div>
+
+      {/* One-click swap between the anime wallpaper and the Spider-Man one */}
+      <button
+        className="wallpaper-switch glass"
+        onClick={() => update({ wallpaper: isSpidey ? 'anime-smash' : 'spiderman' })}
+        title={isSpidey ? 'Switch to anime wallpaper' : 'Switch to Spider-Man wallpaper'}
+      >
+        <Wallpaper size={15} />
+        <span>{isSpidey ? 'Anime' : 'Spider-Man'}</span>
+      </button>
 
       <div className="hello">
         <h1>{profile.name}</h1>

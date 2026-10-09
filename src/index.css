@@ -103,6 +103,14 @@ input, textarea { font: inherit; color: inherit; user-select: text; }
 @media (prefers-reduced-motion: reduce) { .hello h1 { animation: none; } }
 
 
+.wallpaper-switch {
+  position: absolute; top: 16px; right: 16px; z-index: 9998;
+  display: flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; background: rgba(10, 12, 20, 0.55);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35); transition: background 0.15s, transform 0.15s;
+}
+.wallpaper-switch:hover { background: rgba(10, 12, 20, 0.75); transform: translateY(-1px); }
+
 .app-icon {
   position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 6px rgba(0, 0, 0, 0.22), 0 6px 14px rgba(0, 0, 0, 0.4);

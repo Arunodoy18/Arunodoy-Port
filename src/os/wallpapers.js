@@ -10,6 +10,11 @@ export const wallpapers = [
     css: '#27277a url(/wallpapers/anime-smash.svg) 66% center / cover no-repeat',
   },
   {
+    id: 'spiderman',
+    name: 'Spider-Man',
+    css: 'linear-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.25)), url(/wallpapers/spiderman.jpg) center / cover no-repeat, #3b82f6',
+  },
+  {
     id: 'radiant',
     name: 'Radiant Grid',
     css: `radial-gradient(60% 55% at 82% 8%, rgba(255,70,85,0.38), transparent 70%), radial-gradient(55% 50% at 8% 92%, rgba(45,212,191,0.28), transparent 70%), ${grid(0.04)}, #0b0f17`,
