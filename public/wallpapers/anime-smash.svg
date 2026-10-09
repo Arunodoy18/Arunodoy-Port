@@ -83,43 +83,6 @@
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
-    <!-- ================= The player =================
-         Jump smash seen from the side, arched back, racket dropped behind
-         the shoulders ("back-scratch"), free arm tracking the shuttle. -->
-    <g id="player" stroke-linecap="round" stroke-linejoin="round">
-      <!-- back leg (scissor kick) -->
-      <path d="M1312 552 L1352 648" stroke="url(#skin)" stroke-width="46" fill="none"/>
-      <path d="M1352 648 L1428 700" stroke="url(#skin)" stroke-width="34" fill="none"/>
-      <path d="M1420 690 Q1452 676 1474 690 Q1478 706 1458 712 L1424 714 Z" fill="#141230"/>
-      <!-- front leg, knee driven up -->
-      <path d="M1282 548 L1214 622" stroke="url(#skin)" stroke-width="48" fill="none"/>
-      <path d="M1214 622 L1236 724" stroke="url(#skin)" stroke-width="35" fill="none"/>
-      <path d="M1222 712 Q1214 742 1188 752 Q1176 744 1186 732 L1226 704 Z" fill="#141230"/>
-      <!-- shorts -->
-      <path d="M1256 508 L1336 512 Q1350 560 1358 604 L1316 616 L1298 582 L1270 626 L1222 604 Q1240 556 1256 508 Z" fill="#0f1230"/>
-      <!-- racket arm: upper arm up and back, forearm folded behind the head -->
-      <path d="M1316 382 L1384 304" stroke="url(#skin)" stroke-width="32" fill="none"/>
-      <path d="M1384 304 L1352 250" stroke="url(#skin)" stroke-width="26" fill="none"/>
-      <!-- racket hanging behind the back -->
-      <path d="M1350 248 L1378 300 L1404 350" stroke="#151230" stroke-width="9" fill="none"/>
-      <ellipse cx="1426" cy="400" rx="36" ry="54" transform="rotate(-28 1426 400)" fill="none" stroke="#151230" stroke-width="9"/>
-      <!-- torso, arched like a drawn bow -->
-      <path d="M1244 372 Q1272 358 1318 366 Q1344 414 1338 462 Q1334 494 1336 522 L1258 520 Q1250 492 1236 462 Q1220 420 1244 372 Z" fill="url(#jersey)"/>
-      <!-- free arm reaching for the shuttle -->
-      <path d="M1250 388 L1184 306" stroke="url(#skin)" stroke-width="30" fill="none"/>
-      <path d="M1184 306 L1154 222" stroke="url(#skin)" stroke-width="24" fill="none"/>
-      <ellipse cx="1150" cy="206" rx="13" ry="20" transform="rotate(-18 1150 206)" fill="url(#skin)"/>
-      <!-- neck -->
-      <path d="M1282 366 L1270 334" stroke="url(#skin)" stroke-width="26" fill="none"/>
-      <!-- head in profile, chin up, eyes on the shuttle -->
-      <path d="M1236 262 Q1262 248 1290 262 Q1310 282 1300 314 Q1290 340 1262 344 Q1240 346 1228 334 Q1222 326 1224 318 L1214 312 Q1210 306 1216 302 L1210 292 Q1214 274 1236 262 Z" fill="url(#skin)"/>
-      <!-- spiky hair, swept back -->
-      <g>
-        <path d="M1222 286 L1206 262 L1234 268 L1226 236 L1256 256 L1262 222 L1282 252 L1306 228 L1304 262 L1340 256 L1316 282 L1352 296 L1314 304 L1332 330 L1298 318 L1292 340 L1280 300 Q1258 270 1222 286 Z" fill="#100d26"/>
-        <animateTransform attributeName="transform" type="rotate" dur="0.7s" repeatCount="indefinite"
-          values="0 1270 290; 2.5 1270 290; 0 1270 290"/>
-      </g>
-    </g>
   </defs>
 
   <!-- ================= Sky ================= -->
@@ -266,11 +229,11 @@
 
   <!-- incoming shuttle with a comet trail -->
   <g>
-    <path d="M520 30 Q820 60 1090 168" stroke="url(#trail)" stroke-width="14" stroke-linecap="round" fill="none" opacity="0.45" filter="url(#glow)"/>
-    <path d="M520 30 Q820 60 1090 168" stroke="url(#trail)" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="60 30">
+    <path d="M480 10 Q760 30 1040 104" stroke="url(#trail)" stroke-width="14" stroke-linecap="round" fill="none" opacity="0.45" filter="url(#glow)"/>
+    <path d="M480 10 Q760 30 1040 104" stroke="url(#trail)" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="60 30">
       <animate attributeName="stroke-dashoffset" values="0;-90" dur="0.6s" repeatCount="indefinite"/>
     </path>
-    <g transform="translate(1100 172) rotate(22)" filter="url(#glow)">
+    <g transform="translate(1050 108) rotate(22)" filter="url(#glow)">
       <path d="M0 0 L-44 -17 L-44 17 Z" fill="#ffffff"/>
       <path d="M-10 -4 L-44 -17 M-10 4 L-44 17 M-10 0 L-44 0" stroke="#c7d2fe" stroke-width="1.5"/>
       <circle r="9" fill="#ffffff"/>
@@ -278,36 +241,182 @@
     </g>
     <!-- sparkles around the shuttle -->
     <g fill="#ffffff">
-      <path d="M1130 140 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z"><animate attributeName="opacity" values="1;0;1" dur="1.3s" repeatCount="indefinite"/></path>
-      <path d="M1060 210 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z"><animate attributeName="opacity" values="0;1;0" dur="1.1s" repeatCount="indefinite"/></path>
-      <path d="M1150 220 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 Z"><animate attributeName="opacity" values="0.5;1;0" dur="0.9s" repeatCount="indefinite"/></path>
+      <path d="M1080 76 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z"><animate attributeName="opacity" values="1;0;1" dur="1.3s" repeatCount="indefinite"/></path>
+      <path d="M1000 150 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z"><animate attributeName="opacity" values="0;1;0" dur="1.1s" repeatCount="indefinite"/></path>
+      <path d="M1096 150 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 Z"><animate attributeName="opacity" values="0.5;1;0" dur="0.9s" repeatCount="indefinite"/></path>
     </g>
   </g>
 
-  <!-- the player: glowing backlit rim, dark cel-shaded body, accent details -->
+  <!-- the hero: sunset aura behind, then the character, floating on hang time -->
   <g>
-    <use href="#player" xlink:href="#player" filter="url(#rim)"/>
-    <use href="#player" xlink:href="#player"/>
-    <!-- teal jersey stripe and number -->
-    <path d="M1318 368 Q1344 414 1338 462 Q1334 494 1336 522" stroke="#2dd4bf" stroke-width="7" fill="none" opacity="0.9"/>
-    <text x="1268" y="470" font-family="Arial Black, Arial, sans-serif" font-size="46" font-weight="900" fill="#2dd4bf" opacity="0.85" transform="rotate(-8 1290 450)">18</text>
-    <!-- wristbands and shoe accents -->
-    <path d="M1360 262 L1368 276" stroke="#2dd4bf" stroke-width="20" stroke-linecap="butt"/>
-    <path d="M1160 240 L1164 254" stroke="#2dd4bf" stroke-width="18" stroke-linecap="butt"/>
-    <path d="M1424 706 L1466 700" stroke="#2dd4bf" stroke-width="4" stroke-linecap="round"/>
-    <path d="M1190 742 L1220 720" stroke="#2dd4bf" stroke-width="4" stroke-linecap="round"/>
-    <!-- racket strings -->
-    <g transform="rotate(-28 1426 400)" stroke="#ffe6b0" stroke-width="1.3" opacity="0.6">
-      <path d="M1406 356 V444 M1418 349 V451 M1430 348 V452 M1442 352 V448"/>
-      <path d="M1393 372 H1459 M1391 388 H1461 M1391 404 H1461 M1392 420 H1460 M1396 436 H1456"/>
+    <use href="#heroBody" xlink:href="#heroBody" transform="translate(0 -40)" filter="url(#aura)" opacity="0.95"/>
+  <!-- ================= The player =================
+       Cel-shaded anime character mid jump-smash: ink lineart, two-tone shading,
+       warm sunset rim light. Limbs are drawn as an ink stroke with a narrower
+       colour stroke on top, which gives clean outlines. -->
+  <defs>
+    <linearGradient id="iris" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b3b4f"/>
+      <stop offset="0.55" stop-color="#14b8a6"/>
+      <stop offset="1" stop-color="#99f6e4"/>
+    </linearGradient>
+    <linearGradient id="hairGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2b3a8c"/>
+      <stop offset="0.6" stop-color="#1a1f52"/>
+      <stop offset="1" stop-color="#120f33"/>
+    </linearGradient>
+    <linearGradient id="jerseyGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.65" stop-color="#eef0ff"/>
+      <stop offset="1" stop-color="#c9c3ef"/>
+    </linearGradient>
+    <filter id="aura" x="-30%" y="-30%" width="160%" height="160%">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="6" result="fat"/>
+      <feFlood flood-color="#ffcf8a"/>
+      <feComposite in2="fat" operator="in" result="edge"/>
+      <feGaussianBlur in="edge" stdDeviation="16"/>
+    </filter>
+  </defs>
+
+  <g id="hero" transform="translate(0 -40)" stroke-linecap="round" stroke-linejoin="round">
+    <g id="heroBody">
+      <!-- ===== far leg, kicked back ===== -->
+      <path d="M1322 650 L1386 732 L1466 716" stroke="#2a1838" stroke-width="58" fill="none"/>
+      <path d="M1322 650 L1386 732" stroke="#e9a58f" stroke-width="51" fill="none"/>
+      <path d="M1386 732 L1466 716" stroke="#e9a58f" stroke-width="41" fill="none"/>
+      <path d="M1440 718 L1466 716" stroke="#ffffff" stroke-width="35" fill="none"/>
+      <!-- far shoe -->
+      <path d="M1456 694 Q1500 690 1522 704 Q1526 722 1504 730 L1458 734 Q1446 714 1456 694 Z" fill="#f4f4ff" stroke="#2a1838" stroke-width="3.5"/>
+      <path d="M1462 722 L1514 716" stroke="#14b8a6" stroke-width="5"/>
+
+      <!-- ===== far arm (racket arm), cocked high behind the head ===== -->
+      <path d="M1322 412 L1398 326 L1368 252" stroke="#2a1838" stroke-width="44" fill="none"/>
+      <path d="M1322 412 L1398 326" stroke="#e9a58f" stroke-width="38" fill="none"/>
+      <path d="M1398 326 L1368 252" stroke="#ffd8c4" stroke-width="31" fill="none"/>
+      <!-- wristband -->
+      <path d="M1374 268 L1380 282" stroke="#2a1838" stroke-width="30" stroke-linecap="butt"/>
+      <path d="M1374 268 L1380 282" stroke="#14b8a6" stroke-width="25" stroke-linecap="butt"/>
+      <!-- racket -->
+      <path d="M1362 246 L1396 196" stroke="#2a1838" stroke-width="14" fill="none"/>
+      <path d="M1362 246 L1396 196" stroke="#f8fafc" stroke-width="8" fill="none"/>
+      <path d="M1396 196 L1410 184" stroke="#2a1838" stroke-width="6" fill="none"/>
+      <g transform="translate(-12 30) rotate(34 1444 118)">
+        <ellipse cx="1444" cy="118" rx="42" ry="58" fill="rgba(255,255,255,0.08)" stroke="#2a1838" stroke-width="10"/>
+        <ellipse cx="1444" cy="118" rx="42" ry="58" fill="none" stroke="#14b8a6" stroke-width="5"/>
+        <g stroke="#ffffff" stroke-width="1.3" opacity="0.75">
+          <path d="M1420 74 V162 M1432 64 V172 M1444 61 V175 M1456 64 V172 M1468 74 V162"/>
+          <path d="M1404 90 H1484 M1402 106 H1486 M1402 122 H1486 M1403 138 H1485 M1408 154 H1480"/>
+        </g>
+      </g>
+      <!-- racket hand -->
+      <ellipse cx="1362" cy="248" rx="15" ry="13" fill="#ffd8c4" stroke="#2a1838" stroke-width="3.5"/>
+
+      <!-- ===== torso: white jersey with teal panels, twisted toward the shuttle ===== -->
+      <path d="M1203 428 Q1262 394 1332 404 Q1350 470 1340 524 Q1336 562 1342 596 L1238 600 Q1230 548 1220 508 Q1196 466 1203 428 Z"
+            fill="url(#jerseyGrad)" stroke="#2a1838" stroke-width="4"/>
+      <!-- shadow side of the jersey -->
+      <path d="M1300 410 Q1330 404 1332 404 Q1350 470 1340 524 Q1336 562 1342 596 L1308 598 Q1318 540 1312 480 Q1308 440 1300 410 Z" fill="#b8b0e8" opacity="0.75"/>
+      <!-- teal side panel and collar -->
+      <path d="M1322 410 Q1342 470 1334 530 Q1330 566 1336 596 L1322 597 Q1318 560 1320 524 Q1326 466 1306 412 Z" fill="#14b8a6"/>
+      <path d="M1236 414 Q1262 436 1290 412" stroke="#14b8a6" stroke-width="8" fill="none"/>
+      <path d="M1236 414 Q1262 436 1290 412" stroke="#2a1838" stroke-width="2" fill="none"/>
+      <!-- cloth folds -->
+      <path d="M1236 470 Q1258 486 1268 512 M1252 540 Q1270 552 1286 548 M1290 452 Q1296 482 1292 510" stroke="#8f86c9" stroke-width="3" fill="none"/>
+      <!-- number -->
+      <text x="1236" y="530" font-family="Arial Black, Arial, sans-serif" font-size="50" font-weight="900" fill="#0f766e" transform="rotate(-6 1262 510)">18</text>
+
+      <!-- ===== shorts ===== -->
+      <path d="M1236 592 L1344 590 Q1360 642 1368 684 L1306 694 L1290 654 L1270 704 L1212 684 Q1224 636 1236 592 Z"
+            fill="#1e2a5e" stroke="#2a1838" stroke-width="4"/>
+      <path d="M1300 596 L1344 590 Q1360 642 1368 684 L1330 690 Q1326 640 1300 596 Z" fill="#141c45"/>
+      <path d="M1340 600 L1360 680" stroke="#14b8a6" stroke-width="6"/>
+
+      <!-- ===== near leg, knee driven up ===== -->
+      <path d="M1250 660 L1184 712 L1206 812" stroke="#2a1838" stroke-width="62" fill="none"/>
+      <path d="M1250 660 L1184 712" stroke="#ffd8c4" stroke-width="55" fill="none"/>
+      <path d="M1184 712 L1206 812" stroke="#ffd8c4" stroke-width="44" fill="none"/>
+      <!-- shin shading -->
+      <path d="M1196 726 L1214 800" stroke="#e9a58f" stroke-width="12" fill="none"/>
+      <path d="M1204 790 L1207 812" stroke="#ffffff" stroke-width="38" stroke-linecap="butt"/>
+      <!-- near shoe -->
+      <path d="M1188 806 Q1226 802 1232 822 Q1230 846 1200 850 L1158 848 Q1146 836 1160 826 Q1176 818 1188 806 Z" fill="#ffffff" stroke="#2a1838" stroke-width="3.5"/>
+      <path d="M1162 838 L1222 834" stroke="#14b8a6" stroke-width="5"/>
+      <path d="M1158 848 L1200 850" stroke="#2a1838" stroke-width="6"/>
+
+      <!-- ===== neck ===== -->
+      <path d="M1264 370 L1268 412" stroke="#2a1838" stroke-width="48" fill="none"/>
+      <path d="M1264 370 L1268 412" stroke="#e9a58f" stroke-width="41" fill="none"/>
+
+      <!-- ===== head, tilted back to watch the shuttle ===== -->
+      <g transform="translate(4 26) rotate(-16 1258 300)">
+        <!-- back hair mass (behind the face) -->
+        <path d="M1218 250 Q1250 214 1300 226 L1340 206 L1326 240 L1364 240 L1336 262 L1370 284 L1330 290 L1350 322 L1312 314 L1308 344 Q1290 300 1250 290 Z" fill="url(#hairGrad)" stroke="#2a1838" stroke-width="3.5"/>
+        <!-- face -->
+        <path d="M1210 262 Q1200 300 1208 326 L1228 356 Q1248 364 1272 352 Q1302 332 1308 300 L1310 256 Q1288 230 1250 232 Q1220 238 1210 262 Z"
+              fill="#ffd8c4" stroke="#2a1838" stroke-width="4"/>
+        <!-- jaw/neck shadow -->
+        <path d="M1272 352 Q1302 332 1308 300 L1310 270 Q1300 320 1262 344 Z" fill="#e9a58f"/>
+        <!-- ear -->
+        <ellipse cx="1300" cy="300" rx="9" ry="15" fill="#f2b9a1" stroke="#2a1838" stroke-width="3"/>
+        <!-- near eye: lash line, white, iris, pupil, highlights -->
+        <path d="M1220 290 Q1234 280 1260 286 L1258 306 Q1240 312 1224 306 Z" fill="#ffffff"/>
+        <ellipse cx="1236" cy="294" rx="10" ry="12.5" fill="url(#iris)"/>
+        <ellipse cx="1235" cy="293" rx="4.5" ry="6" fill="#06212c"/>
+        <circle cx="1231" cy="288" r="3.6" fill="#ffffff"/>
+        <circle cx="1240" cy="300" r="1.8" fill="#ffffff"/>
+        <path d="M1216 291 Q1236 276 1264 284" stroke="#2a1838" stroke-width="5" fill="none"/>
+        <path d="M1262 284 L1270 280" stroke="#2a1838" stroke-width="3" fill="none"/>
+        <path d="M1224 306 Q1240 312 1258 306" stroke="#2a1838" stroke-width="1.8" fill="none"/>
+        <!-- far eye, foreshortened at the edge of the face -->
+        <path d="M1203 292 Q1208 286 1214 290 L1213 302 Q1207 304 1204 300 Z" fill="#ffffff"/>
+        <ellipse cx="1208" cy="295" rx="4" ry="6" fill="url(#iris)"/>
+        <path d="M1202 290 Q1208 284 1216 288" stroke="#2a1838" stroke-width="3.5" fill="none"/>
+        <!-- determined brows -->
+        <path d="M1218 274 L1262 268" stroke="#1a1f52" stroke-width="5.5"/>
+        <path d="M1202 278 L1212 274" stroke="#1a1f52" stroke-width="4"/>
+        <!-- nose -->
+        <path d="M1208 312 L1204 322 L1211 323" stroke="#c97f68" stroke-width="2.4" fill="none"/>
+        <!-- mouth open mid-shout -->
+        <path d="M1216 334 Q1228 330 1240 336 Q1232 350 1220 346 Z" fill="#8a2d3b" stroke="#2a1838" stroke-width="2.5"/>
+        <path d="M1220 343 Q1228 340 1234 344" stroke="#f08a9a" stroke-width="3" fill="none"/>
+        <!-- blush -->
+        <path d="M1240 318 L1248 314 M1246 320 L1254 316 M1252 322 L1260 318" stroke="#f08a8a" stroke-width="2" opacity="0.8"/>
+        <!-- front bangs falling over the forehead -->
+        <g>
+          <path d="M1204 270 L1196 240 Q1220 222 1254 220 Q1292 220 1314 246 L1308 270 L1292 252 L1286 276 L1270 252 L1258 280 L1246 252 L1230 280 L1226 256 Z"
+                fill="url(#hairGrad)" stroke="#2a1838" stroke-width="3.5"/>
+          <!-- spikes blown upward by the jump -->
+          <path d="M1210 236 L1176 206 L1222 214 L1214 172 L1252 204 L1268 158 L1286 206 L1324 176 L1314 222 L1350 214 L1318 246 Z"
+                fill="url(#hairGrad)" stroke="#2a1838" stroke-width="3.5"/>
+          <!-- glossy anime hair highlights -->
+          <path d="M1230 232 Q1250 224 1272 230 Q1252 236 1236 240 Z" fill="#6f86ff" opacity="0.85"/>
+          <path d="M1290 228 Q1306 232 1312 244" stroke="#ffb27a" stroke-width="3" fill="none"/>
+          <path d="M1260 170 L1266 196 M1318 186 L1306 214" stroke="#ffb27a" stroke-width="2.5" opacity="0.9"/>
+          <animateTransform attributeName="transform" type="rotate" dur="0.6s" repeatCount="indefinite"
+            values="0 1258 240; 2 1258 240; 0 1258 240"/>
+        </g>
+        <!-- flying sweat drop -->
+        <path d="M1320 262 Q1332 270 1328 280 Q1318 284 1316 274 Z" fill="#dff7ff" stroke="#2a1838" stroke-width="2">
+          <animate attributeName="opacity" values="1;0.2;1" dur="1.4s" repeatCount="indefinite"/>
+        </path>
+      </g>
+
+      <!-- ===== near arm, reaching up to track the shuttle ===== -->
+      <path d="M1214 436 L1152 346 L1128 258" stroke="#2a1838" stroke-width="44" fill="none"/>
+      <path d="M1214 436 L1152 346" stroke="#ffd8c4" stroke-width="38" fill="none"/>
+      <path d="M1152 346 L1128 258" stroke="#ffd8c4" stroke-width="31" fill="none"/>
+      <!-- upper-arm shading -->
+      <path d="M1200 430 L1158 366" stroke="#e9a58f" stroke-width="9" fill="none"/>
+      <!-- sleeve -->
+      <path d="M1196 410 Q1226 412 1240 440 L1208 470 Q1190 448 1182 432 Z" fill="#ffffff" stroke="#2a1838" stroke-width="3.5"/>
+      <path d="M1186 440 L1214 466" stroke="#14b8a6" stroke-width="5"/>
+      <!-- wristband + open hand -->
+      <path d="M1132 272 L1130 262" stroke="#2a1838" stroke-width="30" stroke-linecap="butt"/>
+      <path d="M1132 272 L1130 262" stroke="#14b8a6" stroke-width="25" stroke-linecap="butt"/>
+      <path d="M1112 252 Q1108 222 1122 204 Q1134 198 1140 210 L1146 202 Q1156 204 1150 220 Q1152 244 1142 256 Z" fill="#ffd8c4" stroke="#2a1838" stroke-width="3.5"/>
+      <path d="M1122 214 L1124 236 M1132 208 L1134 232" stroke="#c97f68" stroke-width="2"/>
     </g>
-    <!-- hair highlights catching the sun -->
-    <path d="M1300 262 L1318 250 M1316 288 L1338 290 M1290 310 L1312 318" stroke="#ffd9a0" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
-    <!-- the determined anime eye glint -->
-    <path d="M1226 296 Q1236 290 1244 296 Q1236 300 1226 296 Z" fill="#ffffff" filter="url(#glow)">
-      <animate attributeName="opacity" values="1;0.55;1" dur="1.6s" repeatCount="indefinite"/>
-    </path>
-    <!-- hang-time float -->
+  </g>
     <animateTransform attributeName="transform" type="translate" values="0 0; 0 -14; 0 0" dur="3.2s" repeatCount="indefinite"
       calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
   </g>
