@@ -62,7 +62,7 @@ export default function Desktop() {
       </button>
 
       <div className="hello">
-        <h1>{profile.name}</h1>
+        <h1><span className="name">{profile.name}</span></h1>
       </div>
 
       {windows.map((w) => <Window key={w.id} win={w} />)}
