@@ -1,11 +1,11 @@
-import { FolderOpen, User, FileText, Mail, Github, Globe, Settings } from 'lucide-react'
+import { FolderOpen, User, FileText, Mail, Github, Settings } from 'lucide-react'
 import { useWindows } from './WindowContext'
 import { useSettings } from './SettingsContext'
 import { getWallpaper } from './wallpapers'
 import Window from './Window'
 import Taskbar from './Taskbar'
 import FrostOverlay from './FrostOverlay'
-import { AppIcon, FolderIcon } from './Icons'
+import { AppIcon, FolderIcon, ImageIcon } from './Icons'
 import FinderApp from '../apps/FinderApp'
 import AboutApp from '../apps/AboutApp'
 import ResumeApp from '../apps/ResumeApp'
@@ -22,7 +22,7 @@ const apps = [
   { id: 'resume', label: 'Resume', title: profile.resumeName, icon: FileText, graphic: <AppIcon icon={FileText} colors={['#f87171', '#b91c1c']} />, content: <ResumeApp />, size: { width: 860, height: 680 } },
   { id: 'mail', label: 'Mail', title: 'Mail', icon: Mail, graphic: <AppIcon icon={Mail} colors={['#60a5fa', '#1d4ed8']} />, content: <MailApp />, size: { width: 720, height: 540 } },
   { id: 'github', label: 'GitHub', graphic: <AppIcon icon={Github} colors={['#3f3f46', '#09090b']} />, href: profile.github },
-  { id: 'buildc3', label: 'buildc3', graphic: <AppIcon icon={Globe} colors={['#a78bfa', '#6d28d9']} />, href: profile.company },
+  { id: 'buildc3', label: 'BuildC3', graphic: <ImageIcon src="/icons/buildc3.png" alt="buildC3" />, href: profile.company },
   { id: 'settings', label: 'Settings', title: 'Settings', icon: Settings, graphic: <AppIcon icon={Settings} colors={['#94a3b8', '#475569']} />, content: <SettingsApp />, size: { width: 640, height: 500 } },
 ]
 

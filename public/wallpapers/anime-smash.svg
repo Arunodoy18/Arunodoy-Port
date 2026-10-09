@@ -1,0 +1,329 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Sky: dusk indigo down to a hot horizon -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1040"/>
+      <stop offset="0.22" stop-color="#27277a"/>
+      <stop offset="0.45" stop-color="#7a3a9a"/>
+      <stop offset="0.62" stop-color="#e0588a"/>
+      <stop offset="0.74" stop-color="#ff9a5c"/>
+      <stop offset="0.82" stop-color="#ffd27a"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="1290" cy="640" r="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff8e0" stop-opacity="1"/>
+      <stop offset="0.12" stop-color="#ffe6a8" stop-opacity="0.9"/>
+      <stop offset="0.35" stop-color="#ffab6b" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#ff7a7a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sunDisc" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.7" stop-color="#fff6d6"/>
+      <stop offset="1" stop-color="#ffe2a0"/>
+    </radialGradient>
+    <linearGradient id="ray" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff2c8" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#fff2c8" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Clouds lit from below by the sun, shadowed violet on top -->
+    <linearGradient id="cloudLit" x1="0" y1="190" x2="0" y2="780" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6b4aa8"/>
+      <stop offset="0.45" stop-color="#c46fb0"/>
+      <stop offset="0.8" stop-color="#ffb08a"/>
+      <stop offset="1" stop-color="#ffe0a8"/>
+    </linearGradient>
+    <linearGradient id="cloudFar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a3a96" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#e889a8" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="city" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a2a6e"/>
+      <stop offset="1" stop-color="#2a1640"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2456"/>
+      <stop offset="0.35" stop-color="#1c1838"/>
+      <stop offset="1" stop-color="#0c0b1e"/>
+    </linearGradient>
+    <linearGradient id="floorShine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb27a" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffb27a" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="trail" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7df9ff" stop-opacity="0"/>
+      <stop offset="0.7" stop-color="#bffcff" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2a2550"/>
+      <stop offset="1" stop-color="#1a1638"/>
+    </linearGradient>
+    <linearGradient id="jersey" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1d2a5e"/>
+      <stop offset="1" stop-color="#121a40"/>
+    </linearGradient>
+    <pattern id="fence" width="22" height="22" patternUnits="userSpaceOnUse">
+      <path d="M0 0L22 22M22 0L0 22" stroke="#1a1030" stroke-width="1.6" stroke-opacity="0.85"/>
+    </pattern>
+    <pattern id="netMesh" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 0H12M0 0V12" stroke="#f3d6ff" stroke-opacity="0.45" stroke-width="1"/>
+    </pattern>
+
+    <!-- Backlight: a warm glowing rim traced around the whole silhouette -->
+    <filter id="rim" x="-20%" y="-20%" width="140%" height="140%">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="3.5" result="fat"/>
+      <feFlood flood-color="#ffe6b0"/>
+      <feComposite in2="fat" operator="in" result="edge"/>
+      <feGaussianBlur in="edge" stdDeviation="10" result="halo"/>
+      <feFlood flood-color="#ff9a5c" flood-opacity="0.9"/>
+      <feComposite in2="halo" operator="in" result="warmHalo"/>
+      <feMerge><feMergeNode in="warmHalo"/><feMergeNode in="edge"/></feMerge>
+    </filter>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- ================= The player =================
+         Jump smash seen from the side, arched back, racket dropped behind
+         the shoulders ("back-scratch"), free arm tracking the shuttle. -->
+    <g id="player" stroke-linecap="round" stroke-linejoin="round">
+      <!-- back leg (scissor kick) -->
+      <path d="M1312 552 L1352 648" stroke="url(#skin)" stroke-width="46" fill="none"/>
+      <path d="M1352 648 L1428 700" stroke="url(#skin)" stroke-width="34" fill="none"/>
+      <path d="M1420 690 Q1452 676 1474 690 Q1478 706 1458 712 L1424 714 Z" fill="#141230"/>
+      <!-- front leg, knee driven up -->
+      <path d="M1282 548 L1214 622" stroke="url(#skin)" stroke-width="48" fill="none"/>
+      <path d="M1214 622 L1236 724" stroke="url(#skin)" stroke-width="35" fill="none"/>
+      <path d="M1222 712 Q1214 742 1188 752 Q1176 744 1186 732 L1226 704 Z" fill="#141230"/>
+      <!-- shorts -->
+      <path d="M1256 508 L1336 512 Q1350 560 1358 604 L1316 616 L1298 582 L1270 626 L1222 604 Q1240 556 1256 508 Z" fill="#0f1230"/>
+      <!-- racket arm: upper arm up and back, forearm folded behind the head -->
+      <path d="M1316 382 L1384 304" stroke="url(#skin)" stroke-width="32" fill="none"/>
+      <path d="M1384 304 L1352 250" stroke="url(#skin)" stroke-width="26" fill="none"/>
+      <!-- racket hanging behind the back -->
+      <path d="M1350 248 L1378 300 L1404 350" stroke="#151230" stroke-width="9" fill="none"/>
+      <ellipse cx="1426" cy="400" rx="36" ry="54" transform="rotate(-28 1426 400)" fill="none" stroke="#151230" stroke-width="9"/>
+      <!-- torso, arched like a drawn bow -->
+      <path d="M1244 372 Q1272 358 1318 366 Q1344 414 1338 462 Q1334 494 1336 522 L1258 520 Q1250 492 1236 462 Q1220 420 1244 372 Z" fill="url(#jersey)"/>
+      <!-- free arm reaching for the shuttle -->
+      <path d="M1250 388 L1184 306" stroke="url(#skin)" stroke-width="30" fill="none"/>
+      <path d="M1184 306 L1154 222" stroke="url(#skin)" stroke-width="24" fill="none"/>
+      <ellipse cx="1150" cy="206" rx="13" ry="20" transform="rotate(-18 1150 206)" fill="url(#skin)"/>
+      <!-- neck -->
+      <path d="M1282 366 L1270 334" stroke="url(#skin)" stroke-width="26" fill="none"/>
+      <!-- head in profile, chin up, eyes on the shuttle -->
+      <path d="M1236 262 Q1262 248 1290 262 Q1310 282 1300 314 Q1290 340 1262 344 Q1240 346 1228 334 Q1222 326 1224 318 L1214 312 Q1210 306 1216 302 L1210 292 Q1214 274 1236 262 Z" fill="url(#skin)"/>
+      <!-- spiky hair, swept back -->
+      <g>
+        <path d="M1222 286 L1206 262 L1234 268 L1226 236 L1256 256 L1262 222 L1282 252 L1306 228 L1304 262 L1340 256 L1316 282 L1352 296 L1314 304 L1332 330 L1298 318 L1292 340 L1280 300 Q1258 270 1222 286 Z" fill="#100d26"/>
+        <animateTransform attributeName="transform" type="rotate" dur="0.7s" repeatCount="indefinite"
+          values="0 1270 290; 2.5 1270 290; 0 1270 290"/>
+      </g>
+    </g>
+  </defs>
+
+  <!-- ================= Sky ================= -->
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+
+  <!-- stars -->
+  <g fill="#ffffff">
+    <circle cx="180" cy="60" r="1.8"><animate attributeName="opacity" values="0.9;0.2;0.9" dur="3.1s" repeatCount="indefinite"/></circle>
+    <circle cx="420" cy="140" r="1.3"><animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.6s" repeatCount="indefinite"/></circle>
+    <circle cx="760" cy="48" r="2"><animate attributeName="opacity" values="0.8;0.3;0.8" dur="3.7s" repeatCount="indefinite"/></circle>
+    <circle cx="1040" cy="96" r="1.2" opacity="0.6"/>
+    <circle cx="1460" cy="40" r="1.8"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.9s" repeatCount="indefinite"/></circle>
+    <circle cx="1720" cy="120" r="1.4" opacity="0.7"/>
+    <circle cx="1860" cy="60" r="1.1"><animate attributeName="opacity" values="1;0.3;1" dur="4.2s" repeatCount="indefinite"/></circle>
+    <circle cx="600" cy="230" r="1" opacity="0.5"/>
+    <circle cx="1620" cy="250" r="1" opacity="0.4"/>
+  </g>
+
+  <!-- sun glow + slowly turning god rays -->
+  <rect width="1920" height="1080" fill="url(#sunGlow)"/>
+  <g opacity="0.4">
+    <g>
+      <path d="M1290 640 L1960 520 L1960 580 Z" fill="url(#ray)"/>
+      <path d="M1290 640 L1900 180 L1940 230 Z" fill="url(#ray)"/>
+      <path d="M1290 640 L1560 -40 L1620 -20 Z" fill="url(#ray)"/>
+      <path d="M1290 640 L1160 -60 L1220 -60 Z" fill="url(#ray)"/>
+      <path d="M1290 640 L760 -40 L820 -60 Z" fill="url(#ray)"/>
+      <path d="M1290 640 L300 120 L320 180 Z" fill="url(#ray)"/>
+      <path d="M1290 640 L-40 440 L-40 500 Z" fill="url(#ray)"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 1290 640; 6 1290 640; 0 1290 640" dur="18s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- distant clouds drifting -->
+  <g fill="url(#cloudFar)">
+    <g>
+      <ellipse cx="300" cy="300" rx="220" ry="34"/>
+      <ellipse cx="420" cy="276" rx="140" ry="26"/>
+      <ellipse cx="1650" cy="330" rx="240" ry="30"/>
+      <ellipse cx="1560" cy="306" rx="120" ry="22"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 40 0; 0 0" dur="60s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- towering cumulonimbus, left -->
+  <g fill="url(#cloudLit)">
+    <g>
+      <circle cx="250" cy="560" r="150"/>
+      <circle cx="380" cy="470" r="170"/>
+      <circle cx="300" cy="360" r="120"/>
+      <circle cx="420" cy="300" r="110"/>
+      <circle cx="530" cy="420" r="130"/>
+      <circle cx="620" cy="560" r="120"/>
+      <circle cx="120" cy="640" r="110"/>
+      <circle cx="480" cy="640" r="140"/>
+      <circle cx="760" cy="660" r="90"/>
+      <circle cx="200" cy="470" r="90"/><circle cx="340" cy="250" r="70"/><circle cx="470" cy="230" r="60"/>
+      <circle cx="580" cy="320" r="80"/><circle cx="680" cy="470" r="80"/><circle cx="360" cy="600" r="150"/>
+      <circle cx="40" cy="560" r="90"/><circle cx="600" cy="680" r="110"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 18 -4; 0 0" dur="40s" repeatCount="indefinite"/>
+    </g>
+  </g>
+  <!-- right cloud bank -->
+  <g fill="url(#cloudLit)" opacity="0.92">
+    <g>
+      <circle cx="1720" cy="560" r="120"/>
+      <circle cx="1840" cy="480" r="140"/>
+      <circle cx="1620" cy="620" r="90"/>
+      <circle cx="1960" cy="600" r="130"/>
+      <circle cx="1780" cy="660" r="100"/>
+      <circle cx="1700" cy="470" r="80"/><circle cx="1900" cy="400" r="90"/><circle cx="1680" cy="560" r="90"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; -22 0; 0 0" dur="46s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- the sun -->
+  <circle cx="1290" cy="640" r="120" fill="url(#sunDisc)"/>
+
+  <!-- city skyline at the horizon -->
+  <path fill="url(#city)" d="M0 820 V740 H60 V700 H110 V760 H170 V650 H230 V700 H280 V730 H350 V680 H400 V620 H440 V680 H500 V760 H560 V720 H620 V690 H680 V750 H760 V770 H880 V735 H950 V760 H1040 V790 H1600 V720 H1650 V680 H1700 V740 H1760 V700 H1820 V660 H1870 V720 H1920 V820 Z"/>
+  <!-- lit windows -->
+  <g fill="#ffd27a" opacity="0.8">
+    <rect x="182" y="670" width="8" height="10"/><rect x="200" y="690" width="8" height="10"/><rect x="412" y="640" width="8" height="10"/>
+    <rect x="412" y="664" width="8" height="10"/><rect x="574" y="736" width="8" height="10"/><rect x="1662" y="700" width="8" height="10"/>
+    <rect x="1830" y="680" width="8" height="10"/><rect x="1846" y="704" width="8" height="10"/><rect x="250" y="712" width="8" height="10"/>
+  </g>
+
+  <!-- rooftop: fence, water tank, floor -->
+  <rect x="0" y="770" width="1920" height="60" fill="url(#fence)"/>
+  <rect x="0" y="766" width="1920" height="6" fill="#1a1030"/>
+  <g fill="#1a1030">
+    <rect x="0" y="766" width="8" height="70"/><rect x="320" y="766" width="8" height="70"/><rect x="640" y="766" width="8" height="70"/>
+    <rect x="960" y="766" width="8" height="70"/><rect x="1600" y="766" width="8" height="70"/><rect x="1912" y="766" width="8" height="70"/>
+  </g>
+  <g fill="#1d1236">
+    <rect x="1640" y="620" width="150" height="110" rx="14"/>
+    <rect x="1650" y="730" width="14" height="60"/><rect x="1766" y="730" width="14" height="60"/>
+    <rect x="1640" y="610" width="150" height="16" rx="8" fill="#2a1a48"/>
+  </g>
+  <rect x="0" y="830" width="1920" height="250" fill="url(#floor)"/>
+  <rect x="0" y="830" width="1920" height="120" fill="url(#floorShine)"/>
+
+  <!-- court lines in perspective, catching the sunset -->
+  <g stroke="#ffd9b0" fill="none" stroke-linecap="round">
+    <path d="M-300 1080 L560 838 L1500 838 L2300 1080" stroke-width="5" stroke-opacity="0.75"/>
+    <path d="M0 1080 L700 860 L1380 860 L2040 1080" stroke-width="4" stroke-opacity="0.45"/>
+    <path d="M1030 838 L1030 1080" stroke-width="4" stroke-opacity="0.45"/>
+    <path d="M330 920 L1720 920" stroke-width="4" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- net on the left side of the court -->
+  <g>
+    <rect x="250" y="740" width="640" height="70" fill="url(#netMesh)"/>
+    <rect x="250" y="734" width="640" height="8" rx="3" fill="#ffeef7" opacity="0.95"/>
+    <rect x="242" y="734" width="10" height="150" fill="#2a1a48"/>
+    <rect x="888" y="734" width="10" height="150" fill="#2a1a48"/>
+  </g>
+
+  <!-- lens flare along the sun's diagonal -->
+  <g fill="#ffffff">
+    <circle cx="1080" cy="520" r="26" opacity="0.12"/>
+    <circle cx="940" cy="440" r="12" opacity="0.18"/>
+    <circle cx="780" cy="350" r="44" opacity="0.07"/>
+    <polygon points="620,240 650,222 680,240 680,276 650,294 620,276" opacity="0.08"/>
+    <circle cx="520" cy="200" r="8" opacity="0.2"/>
+  </g>
+
+  <!-- anime speed lines bursting around the player -->
+  <g stroke="#fff4dc" stroke-linecap="round" fill="none">
+    <path d="M1490 200 L1680 70" stroke-width="3"><animate attributeName="opacity" values="0.7;0.1;0.7" dur="0.9s" repeatCount="indefinite"/></path>
+    <path d="M1520 320 L1760 250" stroke-width="2"><animate attributeName="opacity" values="0.2;0.7;0.2" dur="0.7s" repeatCount="indefinite"/></path>
+    <path d="M1520 470 L1780 500" stroke-width="3"><animate attributeName="opacity" values="0.6;0.15;0.6" dur="1.1s" repeatCount="indefinite"/></path>
+    <path d="M1490 600 L1700 700" stroke-width="2"><animate attributeName="opacity" values="0.15;0.6;0.15" dur="0.8s" repeatCount="indefinite"/></path>
+    <path d="M1380 170 L1430 30" stroke-width="2"><animate attributeName="opacity" values="0.5;0.1;0.5" dur="1s" repeatCount="indefinite"/></path>
+    <path d="M1090 420 L900 470" stroke-width="2"><animate attributeName="opacity" values="0.1;0.5;0.1" dur="0.95s" repeatCount="indefinite"/></path>
+    <path d="M1120 560 L960 650" stroke-width="3"><animate attributeName="opacity" values="0.5;0.1;0.5" dur="1.2s" repeatCount="indefinite"/></path>
+  </g>
+
+  <!-- player shadow on the floor, shrinking as they rise -->
+  <ellipse cx="1310" cy="1000" rx="170" ry="22" fill="#000" opacity="0.4">
+    <animate attributeName="rx" values="170;150;170" dur="3.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+    <animate attributeName="opacity" values="0.4;0.28;0.4" dur="3.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+  </ellipse>
+
+  <!-- incoming shuttle with a comet trail -->
+  <g>
+    <path d="M520 30 Q820 60 1090 168" stroke="url(#trail)" stroke-width="14" stroke-linecap="round" fill="none" opacity="0.45" filter="url(#glow)"/>
+    <path d="M520 30 Q820 60 1090 168" stroke="url(#trail)" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="60 30">
+      <animate attributeName="stroke-dashoffset" values="0;-90" dur="0.6s" repeatCount="indefinite"/>
+    </path>
+    <g transform="translate(1100 172) rotate(22)" filter="url(#glow)">
+      <path d="M0 0 L-44 -17 L-44 17 Z" fill="#ffffff"/>
+      <path d="M-10 -4 L-44 -17 M-10 4 L-44 17 M-10 0 L-44 0" stroke="#c7d2fe" stroke-width="1.5"/>
+      <circle r="9" fill="#ffffff"/>
+      <circle r="9" fill="#fb7185" opacity="0.5"/>
+    </g>
+    <!-- sparkles around the shuttle -->
+    <g fill="#ffffff">
+      <path d="M1130 140 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z"><animate attributeName="opacity" values="1;0;1" dur="1.3s" repeatCount="indefinite"/></path>
+      <path d="M1060 210 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z"><animate attributeName="opacity" values="0;1;0" dur="1.1s" repeatCount="indefinite"/></path>
+      <path d="M1150 220 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 Z"><animate attributeName="opacity" values="0.5;1;0" dur="0.9s" repeatCount="indefinite"/></path>
+    </g>
+  </g>
+
+  <!-- the player: glowing backlit rim, dark cel-shaded body, accent details -->
+  <g>
+    <use href="#player" xlink:href="#player" filter="url(#rim)"/>
+    <use href="#player" xlink:href="#player"/>
+    <!-- teal jersey stripe and number -->
+    <path d="M1318 368 Q1344 414 1338 462 Q1334 494 1336 522" stroke="#2dd4bf" stroke-width="7" fill="none" opacity="0.9"/>
+    <text x="1268" y="470" font-family="Arial Black, Arial, sans-serif" font-size="46" font-weight="900" fill="#2dd4bf" opacity="0.85" transform="rotate(-8 1290 450)">18</text>
+    <!-- wristbands and shoe accents -->
+    <path d="M1360 262 L1368 276" stroke="#2dd4bf" stroke-width="20" stroke-linecap="butt"/>
+    <path d="M1160 240 L1164 254" stroke="#2dd4bf" stroke-width="18" stroke-linecap="butt"/>
+    <path d="M1424 706 L1466 700" stroke="#2dd4bf" stroke-width="4" stroke-linecap="round"/>
+    <path d="M1190 742 L1220 720" stroke="#2dd4bf" stroke-width="4" stroke-linecap="round"/>
+    <!-- racket strings -->
+    <g transform="rotate(-28 1426 400)" stroke="#ffe6b0" stroke-width="1.3" opacity="0.6">
+      <path d="M1406 356 V444 M1418 349 V451 M1430 348 V452 M1442 352 V448"/>
+      <path d="M1393 372 H1459 M1391 388 H1461 M1391 404 H1461 M1392 420 H1460 M1396 436 H1456"/>
+    </g>
+    <!-- hair highlights catching the sun -->
+    <path d="M1300 262 L1318 250 M1316 288 L1338 290 M1290 310 L1312 318" stroke="#ffd9a0" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+    <!-- the determined anime eye glint -->
+    <path d="M1226 296 Q1236 290 1244 296 Q1236 300 1226 296 Z" fill="#ffffff" filter="url(#glow)">
+      <animate attributeName="opacity" values="1;0.55;1" dur="1.6s" repeatCount="indefinite"/>
+    </path>
+    <!-- hang-time float -->
+    <animateTransform attributeName="transform" type="translate" values="0 0; 0 -14; 0 0" dur="3.2s" repeatCount="indefinite"
+      calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+  </g>
+
+  <!-- floating embers drifting up -->
+  <g fill="#ffd9a0">
+    <circle cx="980" cy="900" r="3"><animate attributeName="cy" values="900;640" dur="7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.9;0" dur="7s" repeatCount="indefinite"/></circle>
+    <circle cx="1560" cy="940" r="2.5"><animate attributeName="cy" values="940;660" dur="9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.8;0" dur="9s" repeatCount="indefinite"/></circle>
+    <circle cx="1180" cy="980" r="2"><animate attributeName="cy" values="980;700" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.8;0" dur="6s" repeatCount="indefinite"/></circle>
+    <circle cx="760" cy="960" r="2.5"><animate attributeName="cy" values="960;720" dur="8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.7;0" dur="8s" repeatCount="indefinite"/></circle>
+  </g>
+
+  <!-- soft vignette -->
+  <radialGradient id="vig" cx="0.55" cy="0.5" r="0.75">
+    <stop offset="0.6" stop-color="#000" stop-opacity="0"/>
+    <stop offset="1" stop-color="#000" stop-opacity="0.45"/>
+  </radialGradient>
+  <rect width="1920" height="1080" fill="url(#vig)"/>
+</svg>

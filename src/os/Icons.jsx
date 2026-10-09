@@ -9,6 +9,14 @@ export const AppIcon = ({ icon: Icon, colors = ['#2dd4bf', '#6366f1'], size = 60
   </div>
 )
 
+// Logo/artwork in the same squircle shape, on a white tile.
+export const ImageIcon = ({ src, alt = '', size = 60 }) => (
+  <div className="app-icon" style={{ width: size, height: size, borderRadius: size * 0.26, background: '#fff' }}>
+    <img src={src} alt={alt} draggable={false} style={{ width: '88%', height: '88%', objectFit: 'contain' }} />
+    <div className="app-icon-gloss" style={{ opacity: 0.35 }} />
+  </div>
+)
+
 export const FolderIcon = ({ size = 64 }) => (
   <svg width={size} height={size * 0.82} viewBox="0 0 100 82" className="folder-icon" aria-hidden="true">
     <defs>

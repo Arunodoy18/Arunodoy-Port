@@ -34,6 +34,6 @@ npm run dev
 
 `netlify.toml` already sets the build: `npm run build` → publish `dist`. Connect this repo in Netlify ("Add new site → Import an existing project") and deploy.
 
-Default wallpaper adapted from ["Prepare To Smash!"](https://commons.wikimedia.org/wiki/File:Lee_Chong_Wei_Prepares_To_Smash.jpg) by Antony Stanley, licensed [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/) (extended to widescreen with a blurred fill).
+The default wallpaper is an original animated SVG illustration (`public/wallpapers/anime-smash.svg`).
 
 Built with React 19, Vite and lucide-react. The desktop-OS concept is inspired by [Om's portfolio](https://github.com/Omzee15/Maccy-Portfolio).

@@ -91,8 +91,6 @@ input, textarea { font: inherit; color: inherit; user-select: text; }
 }
 .hello h1 { font-size: clamp(28px, 5vw, 56px); font-weight: 800; letter-spacing: -0.02em; }
 
-.wallpaper-credit { display: block; margin-top: 10px; font-size: 12px; color: var(--muted); }
-.wallpaper-credit:hover { color: var(--text); text-decoration: underline; }
 
 .app-icon {
   position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden;
