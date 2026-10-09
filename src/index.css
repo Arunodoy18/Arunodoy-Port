@@ -87,9 +87,20 @@ input, textarea { font: inherit; color: inherit; user-select: text; }
 
 .hello {
   position: absolute; z-index: 2; right: 32px; bottom: calc(var(--taskbar-h) + 28px);
-  text-align: right; pointer-events: none; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+  text-align: right; pointer-events: none;
 }
-.hello h1 { font-size: clamp(28px, 5vw, 56px); font-weight: 800; letter-spacing: -0.02em; }
+/* Multi-colour name; colours drift slowly across the letters */
+.hello h1 {
+  font-size: clamp(28px, 5vw, 56px); font-weight: 800; letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #2dd4bf, #60a5fa, #a78bfa, #f472b6, #fb923c, #facc15, #2dd4bf) 0 0 / 200% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  /* drop-shadow (not text-shadow) so the gradient stays crisp on bright wallpaper */
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+  animation: name-colors 10s linear infinite;
+}
+@keyframes name-colors { to { background-position: 200% 0; } }
+@media (prefers-reduced-motion: reduce) { .hello h1 { animation: none; } }
 
 
 .app-icon {
