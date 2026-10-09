@@ -1,8 +1,13 @@
-// Procedural wallpapers: pure CSS, no image files to ship.
+// Wallpapers: an illustrated default plus procedural CSS ones.
 const grid = (a) =>
   `linear-gradient(rgba(255,255,255,${a}) 1px, transparent 1px) 0 0 / 48px 48px, linear-gradient(90deg, rgba(255,255,255,${a}) 1px, transparent 1px) 0 0 / 48px 48px`
 
 export const wallpapers = [
+  {
+    id: 'badminton',
+    name: 'Smash',
+    css: '#3b5bdb url(/wallpapers/badminton.svg) center / cover no-repeat',
+  },
   {
     id: 'radiant',
     name: 'Radiant Grid',
