@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react'
 
 // v2: earlier builds saved untouched defaults, which pinned old visitors to an old wallpaper.
 const KEY = 'arunodoy-os:settings:v2'
-const defaults = { wallpaper: 'badminton', frost: true }
+const defaults = { wallpaper: 'smash-photo', frost: true }
 const Ctx = createContext(null)
 
 export const useSettings = () => useContext(Ctx)

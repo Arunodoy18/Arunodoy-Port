@@ -1,11 +1,21 @@
-// Wallpapers: an illustrated default plus procedural CSS ones.
+// Wallpapers: a photo default, an illustration, and procedural CSS ones.
 const grid = (a) =>
   `linear-gradient(rgba(255,255,255,${a}) 1px, transparent 1px) 0 0 / 48px 48px, linear-gradient(90deg, rgba(255,255,255,${a}) 1px, transparent 1px) 0 0 / 48px 48px`
 
 export const wallpapers = [
   {
-    id: 'badminton',
+    id: 'smash-photo',
     name: 'Smash',
+    css: '#3a0d2c url(/wallpapers/smash-wide.jpg) 62% center / cover no-repeat',
+    // CC BY-SA 2.0 requires visible attribution
+    credit: {
+      text: 'Photo: Antony Stanley, CC BY-SA 2.0',
+      href: 'https://commons.wikimedia.org/wiki/File:Lee_Chong_Wei_Prepares_To_Smash.jpg',
+    },
+  },
+  {
+    id: 'badminton',
+    name: 'Smash (drawn)',
     css: '#3b5bdb url(/wallpapers/badminton.svg) center / cover no-repeat',
   },
   {

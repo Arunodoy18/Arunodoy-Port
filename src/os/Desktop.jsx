@@ -29,6 +29,7 @@ const apps = [
 export default function Desktop() {
   const { windows, open } = useWindows()
   const { settings } = useSettings()
+  const wallpaper = getWallpaper(settings.wallpaper)
 
   const launch = (app, origin) => {
     if (app.href) return openExternal(app.href)
@@ -38,7 +39,7 @@ export default function Desktop() {
   const fromIcon = (e) => e.currentTarget.firstElementChild.getBoundingClientRect()
 
   return (
-    <div className="desktop" style={{ background: getWallpaper(settings.wallpaper).css }}>
+    <div className="desktop" style={{ background: wallpaper.css }}>
       {settings.frost && <FrostOverlay />}
 
       <div className="desktop-grid">
@@ -54,6 +55,12 @@ export default function Desktop() {
         <h1>{profile.name}</h1>
         <p>{profile.title}</p>
       </div>
+
+      {wallpaper.credit && (
+        <a className="wallpaper-credit" href={wallpaper.credit.href} target="_blank" rel="noreferrer">
+          {wallpaper.credit.text}
+        </a>
+      )}
 
       {windows.map((w) => <Window key={w.id} win={w} />)}
 
