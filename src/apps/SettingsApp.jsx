@@ -1,8 +1,9 @@
 import { useSettings } from '../os/SettingsContext'
-import { wallpapers } from '../os/wallpapers'
+import { wallpapers, getWallpaper } from '../os/wallpapers'
 
 export default function SettingsApp() {
   const { settings, update } = useSettings()
+  const current = getWallpaper(settings.wallpaper)
   return (
     <div className="settings">
       <h2>Wallpaper</h2>
@@ -18,6 +19,11 @@ export default function SettingsApp() {
           </button>
         ))}
       </div>
+      {current.credit && (
+        <a className="wallpaper-credit" href={current.credit.href} target="_blank" rel="noreferrer">
+          {current.credit.text}
+        </a>
+      )}
       <h2>Effects</h2>
       <label className="toggle">
         <input type="checkbox" checked={settings.frost} onChange={(e) => update({ frost: e.target.checked })} />
