@@ -2,7 +2,7 @@
 
 My portfolio, built as a small desktop operating system in the browser: draggable windows, a taskbar, genie animations and a frosted-glass desktop you can wipe clear with your cursor.
 
-**Live:** _add Netlify URL here_
+**Live:** https://arunodoy-os.netlify.app
 
 ## Apps
 
