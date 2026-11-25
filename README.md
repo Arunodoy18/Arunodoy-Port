@@ -1,36 +1,25 @@
-# ArunodoyOS — Portfolio
+# BuildC3: sales portfolio
 
-My portfolio, built as a small desktop operating system in the browser: draggable windows, a taskbar, genie animations and a frosted-glass desktop you can wipe clear with your cursor.
+The client-facing site for BuildC3: AI automations, WhatsApp/LinkedIn/call bots, AI agents, SaaS products, websites and management systems. Every call to action goes to WhatsApp, email or LinkedIn.
 
-**Live:** https://arunodoy-os.netlify.app
-
-## Apps
-
-| App | What it does |
-| --- | --- |
-| Projects | Finder-style browser for my projects, with search, categories and grid/list views. Live projects open in a built-in browser window. |
-| About Me | Bio, experience, skills, education and achievements |
-| Resume | My resume PDF, with a download button |
-| Mail | Writes an email to me in your own mail client |
-| Settings | Wallpaper picker and frost toggle (saved in your browser) |
-| GitHub / BuildC3 | Desktop shortcuts to my GitHub profile and buildc3.tech |
-
-## Wallpapers
-
-- **Smash** (default): original animated anime illustration of a jump smash on a sunset rooftop court, `public/wallpapers/anime-smash.svg`.
-- **Spider-Man**: one-click swap with the button in the top-right corner (click again to go back), `public/wallpapers/spiderman.jpg`.
-- Radiant Grid, Aurora, Midnight Dunes and Terminal are CSS-only and selectable in Settings.
-
-Wallpapers are defined in `src/os/wallpapers.js`. The visitor's choice is saved in their browser; bump the storage key in `src/os/SettingsContext.jsx` when you change the default so returning visitors see it.
+**Live:** https://arunodoy-os.netlify.app (auto-deploys from `main` on Netlify)
 
 ## Editing content
 
-All personal details live in two files:
+All of the copy is in one file, `src/data/site.js`:
 
-- `src/data/profile.js`: name, bio, links, skills, experience
-- `src/data/projects.js`: projects (description, stack, live link, repo, icon, colours)
+| Export | What it controls |
+| --- | --- |
+| `brand` | Studio name, hours, location |
+| `contact` | WhatsApp number, email, LinkedIn URL (the LinkedIn button is hidden while it's empty) |
+| `projects` | Work cards: title, tags, year, stat, description, live link, cover image |
+| `services` | The "This is what we build" cards |
+| `offers` | Packages. Set `price` to a string such as `'₹25,000'`; `null` shows "Custom quote" |
+| `process`, `faqs`, `marquee`, `manifesto` | The remaining sections |
 
-To replace the resume, swap `public/Arunodoy_Banerjee_Resume.pdf`.
+Project covers go in `public/work/` (1440×900 screenshots work well).
+
+Links like `/#offers` or `/#work` open straight at that section.
 
 ## Run locally
 
@@ -39,8 +28,8 @@ npm install
 npm run dev
 ```
 
-## Deploy (Netlify)
+## Deploy
 
-`netlify.toml` already sets the build: `npm run build` → publish `dist`. Connect this repo in Netlify ("Add new site → Import an existing project") and deploy.
+`netlify.toml` builds with `npm run build` and publishes `dist`. Pushing to `main` deploys.
 
-Built with React 19, Vite and lucide-react. The desktop-OS concept is inspired by [Om's portfolio](https://github.com/Omzee15/Maccy-Portfolio).
+Built with React 19 and Vite.
