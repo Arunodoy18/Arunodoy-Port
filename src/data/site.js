@@ -9,11 +9,11 @@ export const brand = {
 
 // The three ways clients reach us. Every "Let's talk" button points at these.
 export const contact = {
-  whatsapp: '919864446805', // international format, digits only
+  whatsapp: '918812078591', // international format, digits only
   whatsappText: "Hi! I saw your portfolio and I'd like to build something.",
   email: 'arunodoy630@gmail.com',
   emailSubject: 'New project enquiry',
-  linkedin: '', // TODO: paste your LinkedIn URL. The button stays hidden until you do.
+  linkedin: 'https://www.linkedin.com/in/arunodoy-banerjee/',
 }
 
 export const waLink = (text = contact.whatsappText) =>
