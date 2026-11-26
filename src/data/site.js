@@ -35,10 +35,12 @@ export const about = {
 
 // Showcase strip: images in /public/work or designed tiles ({ tile: 'whatsapp' | 'call' | 'dashboard' | 'code' }).
 export const showcase = [
-  { img: '/work/neurodb-sq.jpg' },
+  { img: '/work/blackmont-sq.jpg' },
   { tile: 'whatsapp' },
-  { img: '/work/dbviz-sq.jpg' },
+  { img: '/work/neurodb-sq.jpg' },
+  { img: '/work/dietbyrd-sq.jpg' },
   { tile: 'call' },
+  { img: '/work/dbviz-sq.jpg' },
   { img: '/work/neurodb-sq2.jpg' },
   { tile: 'dashboard' },
   { img: '/work/dbviz-sq2.jpg' },
@@ -47,6 +49,28 @@ export const showcase = [
 
 // Project cards. `cover` + `hover` are portrait screenshots; `brush` is the hover paint colour.
 export const projects = [
+  {
+    title: 'Blackmont Academy',
+    category: 'Edtech • Spain · 11 countries',
+    year: '2026',
+    description: 'Training platform for Blackmont Consulting: one system replacing branch-led training across 23 branches in 11 countries. Built with Axon Studio.',
+    link: 'https://blackmontacademy.com/',
+    cover: '/work/blackmont-tall.jpg',
+    hover: '/work/blackmont-tall2.jpg',
+    brush: '#7b5cf5',
+    logo: 'B',
+  },
+  {
+    title: 'Diet By RD',
+    category: 'Health-tech • India',
+    year: '2026',
+    description: "India's first clinical nutrition platform where every consultation is with a Registered Dietitian. Built for a client in Bihar.",
+    link: 'https://dietbyrd.buildc3.tech/',
+    cover: '/work/dietbyrd-tall.jpg',
+    hover: '/work/dietbyrd-tall2.jpg',
+    brush: '#1f7a55',
+    logo: 'RD',
+  },
   {
     title: 'NeuroDB',
     category: 'Web apps • AI/ML',
