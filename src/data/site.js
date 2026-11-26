@@ -111,3 +111,62 @@ export const footer = {
   heading: "Okay, that's enough website",
   tagline: 'Built by humans. Powered by AI.',
 }
+
+/* ------------------------------------------------------------ about page */
+export const aboutPage = {
+  heading: ['Small studio,', 'big AI energy'],
+  pills: ['AI & automation studio', 'Independent'],
+  intro: 'Founded in Sikkim by two builders, C3 Studio brings together AI engineering, product thinking and full-stack development.',
+  story: [
+    {
+      label: 'How we started',
+      heading: 'Two builders, one itch to automate everything.',
+      para: "We were already shipping SaaS products, AI agents and Chrome extensions for others. So we put that experience into something of our own: a studio where we question the brief, sweat the details and build the kind of software that quietly does the boring work for you.",
+      art: 'bot',
+    },
+    {
+      label: "Now we're here",
+      heading: 'Less size, more scope',
+      para: "C3 Studio is a two-founder core team, backed by trusted collaborators whenever a project needs it. That means we stay hands-on, move fast and build the right team around every problem. We like projects with a real challenge and people who care about getting it right.",
+      art: 'laptop',
+    },
+  ],
+  teamLabel: 'The team',
+  teamHeading: 'This is pretty much everyone',
+  behind: 'Behind the work',
+}
+
+// Team cards. Clicking a card opens a popup with `bio` and `socials`.
+export const team = [
+  {
+    name: 'Arunodoy Banerjee',
+    role: 'Founder & CTO',
+    photo: '/team/arunodoy.jpg',
+    bio: [
+      'Full-stack and AI engineer who leads the tech at C3. He has shipped multi-tenant SaaS, RAG agents, WhatsApp bots and LLM-powered Chrome extensions used by thousands of people.',
+      'Hackathon winner, open-source contributor and the one who will happily automate the thing you do every Monday.',
+    ],
+    socials: [
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/arunodoy-banerjee/' },
+      { name: 'GitHub', url: 'https://github.com/Arunodoy18' },
+    ],
+  },
+  {
+    name: 'Co-founder', // TODO: CEO's full name
+    role: 'Founder & CEO',
+    photo: '/team/ceo.jpg',
+    bio: [
+      'Runs the business side of C3: clients, strategy and making sure every project ships on time and actually moves the numbers.',
+    ],
+    socials: [],
+  },
+  {
+    name: 'Our collaborators',
+    role: 'On call when a project needs it',
+    photo: null, // shows the C3 bot illustration
+    bio: [
+      'Designers, ML engineers and specialists we trust, brought in when a project demands it. You get a small team that can still go big.',
+    ],
+    socials: [],
+  },
+]

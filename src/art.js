@@ -210,3 +210,27 @@ export const contactStrokes = `
 
 export const footerMark = (name) =>
   `<svg viewBox="0 0 1440 290" preserveAspectRatio="none" class="footer-mark"><text x="0" y="282" textLength="1440" lengthAdjust="spacingAndGlyphs" font-size="370" fill="#fdf8f5" class="display-svg">${name}</text></svg>`
+
+/* ------------------------------------------------------------- about page */
+export const aboutSwirl = `
+<svg viewBox="0 0 492 789" fill="none"><path d="M520 40C330 30 200 150 260 270C310 370 430 300 390 220C340 120 170 200 190 360C210 520 420 520 400 640C385 730 250 760 120 780" stroke="${O}" stroke-width="30"/></svg>`
+
+// One long stroke that winds through the story, then floods into the team panel.
+export const storyPath = `
+<svg viewBox="0 0 1440 3400" preserveAspectRatio="none" fill="none">
+  <path d="M720 40C650 170 840 260 826 410C800 730 100 600 112 950C124 1290 1120 1140 1156 1700C1180 2080 760 2140 650 2330C560 2490 770 2610 840 2480C900 2360 720 2290 650 2470C590 2640 720 2900 720 3380" stroke="${O}" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+</svg>`
+
+export const laptop = `
+<svg viewBox="0 0 420 320" fill="none" class="laptop">
+  <rect x="70" y="40" width="280" height="180" rx="14" fill="#fdf8f5" stroke="${K}" stroke-width="6"/>
+  <rect x="88" y="58" width="244" height="144" rx="6" fill="${O}"/>
+  <rect class="lp-line l1" x="108" y="80" width="120" height="12" rx="6" fill="#fdf8f5"/>
+  <rect class="lp-line l2" x="108" y="104" width="170" height="12" rx="6" fill="#fdf8f5" opacity=".7"/>
+  <rect class="lp-line l3" x="108" y="128" width="90" height="12" rx="6" fill="#fdf8f5" opacity=".7"/>
+  <rect x="108" y="160" width="70" height="24" rx="12" fill="${K}"/>
+  <path d="M30 226h360l-26 40H56Z" fill="#fdf8f5" stroke="${K}" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M180 240h60" stroke="${K}" stroke-width="5" stroke-linecap="round"/>
+  <g class="lp-bubble b1"><rect x="300" y="6" width="104" height="46" rx="20" fill="#fff" stroke="${K}" stroke-width="5"/><text x="352" y="38" text-anchor="middle" font-size="22" fill="${O}">AI ✓</text></g>
+  <g class="lp-bubble b2"><rect x="6" y="20" width="96" height="46" rx="20" fill="${K}"/><text x="54" y="52" text-anchor="middle" font-size="22" fill="#fdf8f5">BOT</text></g>
+</svg>`

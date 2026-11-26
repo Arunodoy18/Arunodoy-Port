@@ -14,30 +14,28 @@ const isTouch = () => matchMedia('(pointer: coarse)').matches || innerWidth < 99
 const OUTLINE = (c) => `0.5px 0.5px 0 ${c}, -0.5px -0.5px 0 ${c}, 0.5px -0.5px 0 ${c}, -0.5px 0.5px 0 ${c}`
 let lenis
 
-export async function initAnimations() {
+export async function initAnimations(page = 'home') {
   // Smooth scroll, synced with ScrollTrigger
   lenis = new Lenis({ lerp: 0.1 })
   lenis.on('scroll', ScrollTrigger.update)
   gsap.ticker.add((t) => lenis.raf(t * 1000))
   gsap.ticker.lagSmoothing(0)
   document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href^="#"]:not([data-contact-trigger])')
-    if (!a) return
-    const id = a.getAttribute('href')
-    if (id.length > 1 && $(id)) { e.preventDefault(); lenis.scrollTo(id === '#top' ? 0 : id, { duration: 1.4 }) }
+    const a = e.target.closest('a[href]:not([data-contact-trigger])')
+    if (!a || a.target === '_blank') return
+    let href = a.getAttribute('href')
+    if (href.startsWith('/#') && location.pathname === '/') href = href.slice(1)
+    if (href.startsWith('#')) {
+      if (href.length > 1 && $(href)) { e.preventDefault(); lenis.scrollTo(href === '#top' ? 0 : href, { duration: 1.4 }) }
+    } else if (href.startsWith('/')) sessionStorage.setItem('c3nav', '1')
   })
 
   await document.fonts.ready
-  walkers()
-  hero()
-  heroMarquee()
-  about()
-  showcase()
-  projects()
-  cardHover()
-  services()
-  offersStack()
-  faq()
+  if (page === 'home') {
+    walkers(); hero(); heroMarquee(); about(); showcase(); projects(); cardHover(); services(); offersStack(); faq()
+  } else {
+    walkers(); aboutHero(); story(); showcase(); teamPopup()
+  }
   footer()
   navButtons()
   ctaButtons()
@@ -53,10 +51,14 @@ function loader() {
     el.style.display = 'none'
     lenis.start()
     ScrollTrigger.refresh()
-    document.dispatchEvent(new CustomEvent('c3:loaded'))
+    if (location.hash && $(location.hash)) lenis.scrollTo(location.hash, { immediate: true })
   }
   lenis.stop()
-  if (reduced) return done()
+  // Like the reference: the full loader plays on first visit / reload, not when moving between pages.
+  const nav = performance.getEntriesByType('navigation')[0]
+  const internal = sessionStorage.getItem('c3nav') === '1' && nav?.type !== 'reload'
+  sessionStorage.setItem('c3nav', '0')
+  if (reduced || internal) { done(); document.dispatchEvent(new CustomEvent('c3:reveal')); return }
 
   const [orange, pink] = $$('.loader-bg path')
   gsap.set([orange, pink], { drawSVG: '0% 100%', strokeWidth: 3000 })
@@ -590,5 +592,92 @@ function contactModal() {
     if (e.target.closest('[data-contact-trigger]')) { e.preventDefault(); open() }
     else if (e.target.closest('.close-btn') || (e.target.closest('.contact-logo') && isOpen)) { e.preventDefault(); close() }
   })
+  addEventListener('keydown', (e) => e.key === 'Escape' && close())
+}
+
+/* ================================================================ about page */
+function aboutHero() {
+  const lines = $$('.ah-heading').flatMap(splitLines)
+  gsap.set(lines, { y: '115%', opacity: 0 })
+  const pills = $$('.ah-pill'); prepPills(pills)
+  const p = $('.ah-swirl path'); gsap.set(p, { drawSVG: '0%', strokeWidth: 0 })
+  const paraLines = splitLines($('.ah-para')); gsap.set(paraLines, { y: '115%', opacity: 0 })
+  gsap.set('.ah-art', { opacity: 0, y: 40 })
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } }).timeScale(0.75)
+  tl.to(lines, { y: '0%', opacity: 1, duration: 0.85, stagger: 0.12, ease: 'back.out(1.4)' }, 0)
+  const total = lines.length * 0.12 + 0.5
+  popPills(tl, pills, 0.2, total)
+  tl.to(p, { drawSVG: '100%', duration: 0.9 }, total * 0.4).to(p, { strokeWidth: 30, duration: 0.9 }, total * 0.4)
+  tl.to('.ah-art', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, 0.2)
+  tl.to(paraLines, { y: '0%', opacity: 1, duration: 0.85, stagger: 0.1, ease: 'back.out(1.4)' }, 0.4)
+  onReveal(() => tl.play())
+}
+
+// One stroke draws through the story in three stages, then floods into the orange team panel.
+function story() {
+  const container = $('.story-team'), wrap = $('.story-team-wrap'), path = $('.story-path path')
+  const mobile = innerWidth < 768
+  const base = innerWidth < 768 ? 50 : innerWidth < 992 ? 75 : 100
+  gsap.set(path, { drawSVG: '0% 0.1%', strokeWidth: base, opacity: 0 })
+  const st = () => ({ trigger: container, start: 'top 80%', end: 'bottom bottom', scrub: 0.8, onUpdate: (s) => gsap.set(path, { opacity: s.progress > 0.002 ? 1 : 0 }) })
+  const keys = mobile
+    ? [{ drawSVG: '0% 55%', duration: 0.05, ease: 'power1.out' }, { drawSVG: '0% 90%', duration: 0.07, ease: 'power1.inOut' }, { drawSVG: '0% 100%', duration: 0.03, ease: 'power1.out' }]
+    : [{ drawSVG: '0% 25%', duration: 0.08, ease: 'power1.out' }, { drawSVG: '0% 88%', duration: 0.12, ease: 'power2.in' }, { drawSVG: '0% 100%', duration: 0.05, ease: 'power1.out' }]
+  gsap.timeline({ scrollTrigger: st() }).to(path, { keyframes: keys }, 0).to({}, { duration: mobile ? 0.17 : 0.07 }, mobile ? 0.15 : 0.25)
+  const fs = mobile ? 0.1 : 0.2, fd = mobile ? 0.03 : 0.05, bd = mobile ? 0.06 : 0.1
+  gsap.timeline({ scrollTrigger: st() })
+    .to(path, { strokeWidth: 2500, duration: fd, ease: 'power2.inOut' }, fs)
+    .fromTo(wrap, { backgroundColor: 'rgba(255,84,0,0)' }, { backgroundColor: 'rgba(255,84,0,1)', duration: bd, ease: 'power2.inOut' }, fs)
+    .to({}, { duration: 0.32 - (fs + bd) }, fs + bd)
+
+  $$('.story-section').forEach((sec, i) => {
+    const art = $('.story-art', sec), label = $('.story-label', sec)
+    const h = splitLines($('.story-heading', sec)), p = splitLines($('.story-para', sec))
+    gsap.set(art, { opacity: 0, scale: 0.65, rotation: i % 2 ? 6 : -6 })
+    gsap.set(label, { opacity: 0, y: 20 })
+    gsap.set([...h, ...p], { y: '115%', opacity: 0 })
+    gsap.timeline({ scrollTrigger: { trigger: sec, start: 'top 75%' } })
+      .to(art, { opacity: 1, scale: 1, rotation: 0, duration: 0.9, ease: 'back.out(1.8)' }, 0)
+      .to(label, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.1)
+      .to(h, { y: '0%', opacity: 1, duration: 0.8, stagger: 0.1, ease: 'back.out(1.4)' }, 0.15)
+      .to(p, { y: '0%', opacity: 1, duration: 0.8, stagger: 0.06, ease: 'back.out(1.4)' }, 0.3)
+  })
+  gsap.from('.team-card', { y: 60, opacity: 0, rotation: (i) => [-4, 3, -2][i % 3], duration: 0.9, stagger: 0.12, ease: 'back.out(1.6)', scrollTrigger: { trigger: '.team-btm', start: 'top 85%' } })
+  addEventListener('load', () => ScrollTrigger.refresh())
+}
+
+// A team card expands into a popup with bio + socials.
+function teamPopup() {
+  const team = window.__team || []
+  const overlay = $('.team-popup'), card = $('.tp-card', overlay)
+  const imgEl = $('.tp-img', overlay), nameEl = $('.tp-name', overlay), roleEl = $('.tp-role', overlay)
+  const bioEl = $('.tp-bio', overlay), socialsEl = $('.tp-socials', overlay), closeBtn = $('.tp-close', overlay)
+  let isOpen = false, tl
+  const open = (src, m) => {
+    if (isOpen) return
+    isOpen = true; tl?.kill()
+    imgEl.innerHTML = src.querySelector('.team-img').innerHTML
+    nameEl.textContent = m.name; roleEl.textContent = m.role
+    bioEl.innerHTML = m.bio.map((b) => `<p>${b}</p>`).join('')
+    socialsEl.innerHTML = m.socials.map((x) => `<a class="team-popup-pill" href="${x.url}" target="_blank" rel="noreferrer">${x.name}</a>`).join('')
+    socialsEl.style.display = m.socials.length ? 'flex' : 'none'
+    overlay.classList.add('is-active'); lenis.stop()
+    const s = src.getBoundingClientRect(), c = card.getBoundingClientRect()
+    tl = gsap.timeline()
+      .fromTo(card,
+        { x: s.left + s.width / 2 - (c.left + c.width / 2), y: s.top + s.height / 2 - (c.top + c.height / 2), scaleX: Math.max(s.width / c.width, 0.25), scaleY: Math.max(s.height / c.height, 0.25), opacity: 0.6, borderRadius: '16px' },
+        { x: 0, y: 0, scaleX: 1, scaleY: 1, opacity: 1, borderRadius: '1.5em', duration: 0.65, ease: 'back.out(1.4)' }, 0)
+      .fromTo([nameEl, roleEl, ...bioEl.children, ...socialsEl.children], { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.04, ease: 'power2.out' }, 0.18)
+      .fromTo(closeBtn, { scale: 0, opacity: 0, rotation: -90 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.45, ease: 'back.out(2.5)' }, 0.3)
+  }
+  const close = () => {
+    if (!isOpen) return
+    tl?.kill()
+    tl = gsap.timeline({ onComplete: () => { overlay.classList.remove('is-active'); isOpen = false; lenis.start(); gsap.set(card, { clearProps: 'all' }) } })
+      .to(card, { scale: 0.88, opacity: 0, duration: 0.28, ease: 'power2.inOut' })
+  }
+  $$('.team-card').forEach((c) => c.addEventListener('click', () => open(c, team[+c.dataset.i])))
+  closeBtn.addEventListener('click', (e) => { e.stopPropagation(); close() })
+  overlay.addEventListener('click', (e) => e.target === overlay && close())
   addEventListener('keydown', (e) => e.key === 'Escape' && close())
 }
