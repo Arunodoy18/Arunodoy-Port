@@ -7,9 +7,9 @@ import * as art from '../art.js'
 const cardHtml = (p) => `
   <a class="project-card" ${p.link ? ext(p.link) : 'href="#contact" data-contact-trigger'}>
     <div class="card-img">
-      ${p.coverArt ? `<div class="card-cover art-cover">${art.covers[p.coverArt].cover}</div>` : `<img class="card-cover" src="${p.cover}" alt="${esc(p.title)}" loading="lazy">`}
+      ${p.coverArt ? `<div class="card-cover art-cover">${art.covers[p.coverArt].cover}</div>` : `<img class="card-cover" src="${p.cover}" alt="${esc(p.title)}: ${esc(p.category)}" width="728" height="1020" loading="lazy" decoding="async">`}
       ${art.cardBrush(p.brush)}
-      ${p.coverArt ? `<div class="card-hover art-hover">${art.covers[p.coverArt].hover}</div>` : `<img class="card-hover" src="${p.hover}" alt="" loading="lazy">`}
+      ${p.coverArt ? `<div class="card-hover art-hover">${art.covers[p.coverArt].hover}</div>` : `<img class="card-hover" src="${p.hover}" alt="${esc(p.title)}: another screen" width="728" height="1020" loading="lazy" decoding="async">`}
     </div>
     <div class="card-detail">
       <div class="card-logo" style="background:${p.brush}">${p.logo}</div>
@@ -63,7 +63,7 @@ export const homeHtml = () => layout(`
   </div></div></section>
 
   <section class="showcase"><div class="showcase-wrap"><div class="showcase-track">
-    ${showcase.map((s) => `<div class="showcase-slide">${s.img ? `<img src="${s.img}" alt="" loading="lazy">` : tiles[s.tile]}</div>`).join('')}
+    ${showcase.map((s) => `<div class="showcase-slide">${s.img ? `<img src="${s.img}" alt="${esc(s.alt || '')}" width="1000" height="1000" loading="lazy" decoding="async">` : tiles[s.tile]}</div>`).join('')}
   </div></div></section>
 
   <section class="projects" id="work">

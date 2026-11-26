@@ -40,7 +40,7 @@ export const layout = (main) => `
         <div class="footer-addr"><span>${esc(footer.tagline)}</span><span>${brand.location.join('<br>')}</span></div>
       </div>
     </div>
-    <div class="footer-btm">${art.footerMark(brand.name)}<div class="footer-rights">© Copyright ${new Date().getFullYear()} · ${brand.name}</div></div>
+    <div class="footer-btm">${art.footerMark(brand.name)}<div class="footer-rights"><span>© Copyright ${new Date().getFullYear()} · ${brand.name}</span><span class="footer-legal"><a href="/contact">Contact</a><a href="/privacy">Privacy policy</a><a href="/terms">Terms of use</a></span></div></div>
   </div>
 </footer>
 

@@ -13,7 +13,7 @@ const storySection = (s, i) => {
 
 const teamCard = (m, i) => `
   <button class="team-card" data-i="${i}">
-    <div class="team-img">${m.photo ? `<img src="${m.photo}" alt="${esc(m.name)}" loading="lazy">` : `<div class="team-img-art">${art.bot}</div>`}</div>
+    <div class="team-img">${m.photo ? `<img src="${m.photo}" alt="${esc(m.name)}, ${esc(m.role)} at C3 Studio" width="900" height="1080" loading="lazy" decoding="async">` : `<div class="team-img-art">${art.bot}</div>`}</div>
     <div class="team-name">${esc(m.name)}</div>
     <div class="team-sub">${esc(m.role)}</div>
   </button>`
@@ -44,7 +44,7 @@ export const aboutHtml = () => layout(`
   <section class="showcase behind">
     ${secHeader(A.behind, 'Built, shipped, live', '')}
     <div class="showcase-wrap"><div class="showcase-track">
-      ${showcase.map((s) => `<div class="showcase-slide">${s.img ? `<img src="${s.img}" alt="" loading="lazy">` : tiles[s.tile]}</div>`).join('')}
+      ${showcase.map((s) => `<div class="showcase-slide">${s.img ? `<img src="${s.img}" alt="${esc(s.alt || '')}" width="1000" height="1000" loading="lazy" decoding="async">` : tiles[s.tile]}</div>`).join('')}
     </div></div>
   </section>
 

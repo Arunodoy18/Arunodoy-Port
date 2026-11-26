@@ -14,10 +14,13 @@ function prerender() {
     name: 'c3-prerender',
     configureServer(s) { server = s },
     async transformIndexHtml(html, ctx) {
-      const page = /about/.test(ctx.path) ? 'about' : 'home'
+      const name = ctx.path.replace(/^\//, '').replace(/\.html$/, '') || 'index'
+      const page = name === 'index' ? 'home' : name
       const seo = await load('/src/seo.js')
-      const mod = await load(`/src/pages/${page}.js`)
-      const body = page === 'about' ? mod.aboutHtml() : mod.homeHtml()
+      let body
+      if (page === 'home') body = (await load('/src/pages/home.js')).homeHtml()
+      else if (page === 'about') body = (await load('/src/pages/about.js')).aboutHtml()
+      else body = (await load('/src/pages/doc.js')).docHtml(page)
       return html.replace('<!--seo-->', seo.headTags(page)).replace('<div id="app"></div>', `<div id="app">${body}</div>`)
     },
     async generateBundle() {
@@ -30,5 +33,9 @@ function prerender() {
 
 export default defineConfig({
   plugins: [prerender()],
-  build: { rollupOptions: { input: { main: resolve(root, 'index.html'), about: resolve(root, 'about.html') } } },
+  build: {
+    rollupOptions: {
+      input: Object.fromEntries(['index', 'about', 'contact', 'privacy', 'terms', '404'].map((n) => [n === 'index' ? 'main' : n, resolve(root, `${n}.html`)])),
+    },
+  },
 })

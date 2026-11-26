@@ -33,14 +33,17 @@ export async function initAnimations(page = 'home') {
   await document.fonts.ready
   if (page === 'home') {
     walkers(); hero(); heroMarquee(); about(); showcase(); projects(); cardHover(); services(); offersStack(); faq()
-  } else {
+  } else if (page === 'about') {
     walkers(); aboutHero(); story(); showcase(); teamPopup()
+  } else {
+    docPage() // contact / privacy / terms / 404
   }
   footer()
   navButtons()
   ctaButtons()
   contactModal()
   charWobble('.footer-link, .email-link')
+  document.documentElement.classList.add('ready') // layout is final: reveal the page under the loader (no CLS)
   loader()
 }
 
@@ -680,4 +683,17 @@ function teamPopup() {
   closeBtn.addEventListener('click', (e) => { e.stopPropagation(); close() })
   overlay.addEventListener('click', (e) => e.target === overlay && close())
   addEventListener('keydown', (e) => e.key === 'Escape' && close())
+}
+
+/* ======================================== simple pages (contact, legal, 404) */
+function docPage() {
+  const lines = $$('.doc-title').flatMap(splitLines)
+  gsap.set(lines, { y: '115%', opacity: 0 })
+  const pills = $$('.doc-pill'); prepPills(pills)
+  gsap.set('.doc-body > *', { opacity: 0, y: 24 })
+  const tl = gsap.timeline({ paused: true }).timeScale(0.75)
+  tl.to(lines, { y: '0%', opacity: 1, duration: 0.85, stagger: 0.12, ease: 'back.out(1.4)' }, 0)
+  popPills(tl, pills, 0.2, lines.length * 0.12 + 0.5)
+  tl.to('.doc-body > *', { opacity: 1, y: 0, duration: 0.7, stagger: 0.05, ease: 'power2.out' }, 0.35)
+  onReveal(() => tl.play())
 }

@@ -1,3 +1,7 @@
+/* ---------- self-hosted fonts (latin subset, preloaded in the HTML) ---------- */
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 900; font-stretch: 62% 100%; font-display: swap; src: url('/fonts/archivo-900-condensed.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('/fonts/hanken-grotesk.woff2') format('woff2'); }
+
 /* ---------- scaling system: 1em = 16px at a 1440px-wide design ---------- */
 :root {
   --size-unit: 16; --size-container-ideal: 1440; --size-container-min: 992px; --size-container-max: 1920px;
@@ -291,7 +295,9 @@ html.lenis, html.lenis body { height: auto; }
 .footer-addr { display: flex; justify-content: space-between; gap: 2em; color: var(--white); font-size: 1.125em; font-weight: 500; line-height: 1.4; }
 .footer-btm { display: flex; flex-direction: column; gap: 1em; transform-origin: bottom center; }
 .footer-mark { width: 100%; height: 20vw; max-height: 60vh; display: block; overflow: visible; }
-.footer-rights { color: var(--white); font-size: .75em; font-weight: 500; }
+.footer-rights { color: var(--white); font-size: .75em; font-weight: 500; display: flex; justify-content: space-between; gap: 1em; flex-wrap: wrap; }
+.footer-legal { display: flex; gap: 1.5em; }
+.footer-legal a:hover { text-decoration: underline; }
 
 /* ---------- contact overlay ---------- */
 .contact-page { position: fixed; inset: 0; z-index: 9999999; display: none; flex-direction: column; overflow: hidden; }
@@ -427,6 +433,44 @@ html.lenis, html.lenis body { height: auto; }
 .cup .s2 { animation-delay: .4s; } .cup .s3 { animation-delay: .8s; }
 @keyframes steam { 0% { opacity: 0; transform: translateY(10px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(-12px); } }
 
+
+/* ================================================ contact / legal / 404 pages */
+.doc-wrap { position: relative; min-height: 100svh; padding: 9em 1.25em 8em; background: linear-gradient(180deg, var(--pink) 0%, var(--secondary) 45%, var(--white)); }
+.doc-head { position: relative; max-width: var(--size-container); margin: 0 auto 4em; }
+.doc-title { font-family: var(--font-display); font-weight: 900; font-stretch: 62%; text-transform: uppercase; color: var(--primary); font-size: 9em; line-height: .82; }
+.doc-pill { position: absolute; }
+.doc-pill.p0 { top: -1.6em; left: 32%; rotate: -4deg; }
+.doc-pill.p1 { bottom: -1.4em; right: 18%; rotate: 5deg; }
+.doc-grid { max-width: var(--size-container); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 46em) 1fr; gap: 4em; align-items: start; }
+.doc-body { font-size: 1.125em; line-height: 1.6; }
+.doc-body h2 { font-family: var(--font-display); font-weight: 900; font-stretch: 62%; text-transform: uppercase; color: var(--primary); font-size: 2.2em; line-height: .9; margin: 1.4em 0 .4em; }
+.doc-body p { margin-bottom: .9em; }
+.doc-body a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.doc-lead { font-size: 1.45em; line-height: 1.35; font-weight: 500; }
+.doc-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6em 3em; margin: 2em 0; }
+.doc-k { opacity: .6; font-weight: 500; }
+.doc-v { font-family: var(--font-display); font-weight: 900; font-stretch: 62%; color: var(--primary); font-size: 2em; line-height: 1.1; text-decoration: none !important; }
+.doc-v.small { font-family: var(--font-body); font-weight: 600; font-size: 1.1em; color: var(--black); }
+.doc-nap { font-style: normal; opacity: .8; margin-bottom: 2em; }
+.doc-ctas { display: flex; align-items: center; gap: 1.5em; flex-wrap: wrap; margin-top: 1.5em; }
+.doc-ctas .cta-btn { font-size: 1.3em; text-decoration: none; }
+.doc-wa { display: inline-flex; align-items: center; gap: .5em; font-weight: 600; text-decoration: none !important; border-bottom: 2px solid currentColor; }
+.doc-wa svg { width: .7em; height: .7em; }
+.doc-links { display: flex; flex-wrap: wrap; gap: .6em; margin: 1.5em 0; }
+.doc-link { background: var(--black); color: var(--white) !important; text-decoration: none !important; border-radius: 100px; padding: .6em 1.3em; font-weight: 500; }
+.doc-link:hover { background: var(--primary); }
+.doc-art { display: flex; justify-content: center; position: sticky; top: 8em; }
+.doc-art .bot { width: 70%; height: auto; }
+@media (max-width: 767px) {
+  .doc-title { font-size: 5em; }
+  .doc-grid { grid-template-columns: 1fr; }
+  .doc-art { display: none; }
+  .doc-contact { grid-template-columns: 1fr; }
+  .doc-pill.p0 { left: auto; right: 0; top: -2.4em; }
+  .doc-pill.p1 { right: 0; bottom: -2.6em; }
+  .footer-legal { gap: 1em; }
+}
+
 /* ---------- tablet / mobile ---------- */
 @media (max-width: 991px) {
   .nav-links, .nav-timing { display: none; }
@@ -478,3 +522,6 @@ html.lenis, html.lenis body { height: auto; }
   .email-link { font-size: 2.2em; }
   .contact-img { width: 11em; }
 }
+
+/* Until JS has fonts loaded and text split, keep the page hidden under the loader so nothing shifts (CLS). */
+.js:not(.ready) .header, .js:not(.ready) main, .js:not(.ready) .footer { visibility: hidden; }

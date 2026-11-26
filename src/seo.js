@@ -14,15 +14,36 @@ const SUMMARY =
 export const pages = {
   home: {
     path: '/',
-    title: 'C3 Studio | AI Automation, WhatsApp Bots, AI Agents & SaaS Development',
+    title: 'C3 Studio | AI Automation, Bots & SaaS Development',
     description:
-      'C3 Studio builds WhatsApp, LinkedIn and AI call automations, AI agents, SaaS products, websites and management systems. Based in Sikkim, India, working worldwide.',
+      'C3 Studio builds WhatsApp, LinkedIn and AI call automations, AI agents, SaaS products and websites. Based in Sikkim, India, working with clients worldwide.',
   },
   about: {
     path: '/about',
     title: 'About C3 Studio | Small studio, big AI energy',
     description:
-      'Meet C3 Studio, an AI and automation studio founded by Arunodoy Banerjee (CTO) and Om Gupta (CEO). A small, hands-on team building AI products, bots and SaaS.',
+      'Meet C3 Studio, the AI and automation studio founded by Arunodoy Banerjee (CTO) and Om Gupta (CEO): a small, hands-on team building AI products and SaaS.',
+  },
+  contact: {
+    path: '/contact',
+    title: 'Contact C3 Studio | WhatsApp, Email & LinkedIn',
+    description: 'Start a project with C3 Studio. WhatsApp +91 88120 78591 or email us for AI automation, AI agents, SaaS and websites. We reply within a few hours.',
+  },
+  privacy: {
+    path: '/privacy',
+    title: 'Privacy Policy | C3 Studio',
+    description: 'How C3 Studio handles your information: no cookies, no tracking, and contact details used only to reply and work with you.',
+  },
+  terms: {
+    path: '/terms',
+    title: 'Terms of Use | C3 Studio',
+    description: 'The terms for using the C3 Studio website. Client projects are covered by a separate written proposal or agreement.',
+  },
+  404: {
+    path: '/404',
+    title: 'Page not found | C3 Studio',
+    description: 'This page does not exist. Head back to C3 Studio for AI automation, AI agents, SaaS and websites.',
+    noindex: true,
   },
 }
 
@@ -96,6 +117,10 @@ const work = {
 }
 
 export function jsonLd(page) {
+  if (!['home', 'about'].includes(page)) {
+    const type = page === 'contact' ? 'ContactPage' : 'WebPage'
+    return JSON.stringify({ '@context': 'https://schema.org', '@graph': [organization, website, { '@type': type, '@id': `${SITE_URL}${pages[page].path}#page`, url: `${SITE_URL}${pages[page].path}`, name: pages[page].title, about: { '@id': orgId } }] }).replace(/</g, '\\u003c')
+  }
   const graph =
     page === 'about'
       ? [organization, website, ...people.map(personNode), { '@type': 'AboutPage', '@id': `${SITE_URL}/about#page`, url: `${SITE_URL}/about`, name: pages.about.title, about: { '@id': orgId }, mainEntity: { '@id': orgId } }]
@@ -109,8 +134,14 @@ export function headTags(page) {
   return [
     `<title>${escAttr(p.title)}</title>`,
     `<meta name="description" content="${escAttr(p.description)}" />`,
-    `<link rel="canonical" href="${url}" />`,
-    `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />`,
+    ...(p.noindex
+      ? [`<meta name="robots" content="noindex, follow" />`]
+      : [
+          `<link rel="canonical" href="${url}" />`,
+          `<link rel="alternate" hreflang="en" href="${url}" />`,
+          `<link rel="alternate" hreflang="x-default" href="${url}" />`,
+          `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />`,
+        ]),
     `<meta name="author" content="${NAME}" />`,
     `<meta name="geo.region" content="IN-SK" />`,
     `<meta name="geo.placename" content="Sikkim, India" />`,
@@ -166,6 +197,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 export const sitemapXml = () => {
   const today = new Date().toISOString().slice(0, 10)
   const urls = Object.values(pages)
+    .filter((p) => !p.noindex)
     .map((p, i) => `  <url><loc>${SITE_URL}${p.path}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>${i ? '0.8' : '1.0'}</priority></url>`)
     .join('\n')
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
@@ -213,4 +245,7 @@ ${faqs.map((f) => `### ${f.q}\n${f.a}`).join('\n\n')}
 
 - [Home](${SITE_URL}/): services, work, offers, FAQ
 - [About](${SITE_URL}/about): story and team
+- [Contact](${SITE_URL}/contact): WhatsApp, email, LinkedIn
+- [Privacy policy](${SITE_URL}/privacy)
+- [Terms of use](${SITE_URL}/terms)
 `

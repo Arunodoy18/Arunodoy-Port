@@ -35,17 +35,17 @@ export const about = {
 
 // Showcase strip: images in /public/work or designed tiles ({ tile: 'whatsapp' | 'call' | 'dashboard' | 'code' }).
 export const showcase = [
-  { img: '/work/blackmont-sq.jpg' },
+  { img: '/work/blackmont-sq.jpg', alt: 'Blackmont Academy website by C3 Studio' },
   { tile: 'whatsapp' },
-  { img: '/work/neurodb-sq.jpg' },
-  { img: '/work/dietbyrd-sq.jpg' },
+  { img: '/work/neurodb-sq.jpg', alt: 'NeuroDB AI PostgreSQL assistant landing page' },
+  { img: '/work/dietbyrd-sq.jpg', alt: 'Diet By RD clinical nutrition platform' },
   { tile: 'call' },
-  { img: '/work/dbviz-sq.jpg' },
-  { img: '/work/mfg-sq.jpg' },
-  { img: '/work/neurodb-sq2.jpg' },
+  { img: '/work/dbviz-sq.jpg', alt: 'DB-Viz database schema visualiser' },
+  { img: '/work/mfg-sq.jpg', alt: 'Manufacturing CRM procurement and vendor dashboard' },
+  { img: '/work/neurodb-sq2.jpg', alt: 'NeuroDB app showing a database diagram' },
   { tile: 'dashboard' },
-  { img: '/work/dbviz-sq2.jpg' },
-  { img: '/work/mfg-sq2.jpg' },
+  { img: '/work/dbviz-sq2.jpg', alt: 'DB-Viz connect database dialog' },
+  { img: '/work/mfg-sq2.jpg', alt: 'Manufacturing CRM logistics and dispatch dashboard' },
   { tile: 'code' },
 ]
 
