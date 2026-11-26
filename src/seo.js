@@ -1,6 +1,7 @@
 // SEO / AEO / GEO: head tags, schema.org JSON-LD, robots.txt, sitemap.xml and llms.txt.
 // Everything is generated at build time from src/data/site.js (see vite.config.js).
 import { brand, contact, hero, about, services, offers, projects, faqs, team, aboutPage } from './data/site.js'
+import { posts } from './data/posts.js'
 
 // Change this when the site moves to its own domain.
 export const SITE_URL = (process.env.SITE_URL || 'https://arunodoy-os.netlify.app').replace(/\/$/, '')
@@ -46,6 +47,14 @@ export const pages = {
     noindex: true,
   },
 }
+
+pages.blog = {
+  path: '/blog',
+  title: 'Blog | C3 Studio: AI, Automation & SaaS Guides',
+  description: 'Practical guides on WhatsApp bots, AI agents, SaaS and custom software from the C3 Studio team.',
+}
+for (const p of posts)
+  pages[`post:${p.slug}`] = { path: `/blog/${p.slug}`, title: p.seoTitle || p.title, description: p.description, post: p }
 
 const escAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
 const people = team.filter((m) => m.photo)
@@ -117,6 +126,22 @@ const work = {
 }
 
 export function jsonLd(page) {
+  if (page === 'blog') {
+    const blog = { '@type': 'Blog', '@id': `${SITE_URL}/blog#blog`, url: `${SITE_URL}/blog`, name: pages.blog.title, publisher: { '@id': orgId },
+      blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.title, url: `${SITE_URL}/blog/${p.slug}`, datePublished: p.date })) }
+    return JSON.stringify({ '@context': 'https://schema.org', '@graph': [organization, website, blog] }).replace(/</g, '\\u003c')
+  }
+  if (page.startsWith('post:')) {
+    const p = pages[page].post
+    const author = people.find((m) => m.name === p.author)
+    const url = `${SITE_URL}/blog/${p.slug}`
+    const article = { '@type': 'BlogPosting', '@id': `${url}#article`, mainEntityOfPage: url, url, headline: p.title, description: p.description,
+      datePublished: p.date, dateModified: p.modified || p.date, inLanguage: 'en', keywords: p.tags.join(', '), image: OG_IMAGE,
+      author: author ? { '@id': personNode(author)['@id'], '@type': 'Person', name: author.name, url: `${SITE_URL}/about` } : { '@type': 'Person', name: p.author },
+      publisher: { '@id': orgId }, isPartOf: { '@id': `${SITE_URL}/blog#blog` } }
+    const crumbs = { '@type': 'BreadcrumbList', itemListElement: [['Home', '/'], ['Blog', '/blog'], [p.title, `/blog/${p.slug}`]].map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE_URL + path })) }
+    return JSON.stringify({ '@context': 'https://schema.org', '@graph': [organization, ...(author ? [personNode(author)] : []), article, crumbs] }).replace(/</g, '\\u003c')
+  }
   if (!['home', 'about'].includes(page)) {
     const type = page === 'contact' ? 'ContactPage' : 'WebPage'
     return JSON.stringify({ '@context': 'https://schema.org', '@graph': [organization, website, { '@type': type, '@id': `${SITE_URL}${pages[page].path}#page`, url: `${SITE_URL}${pages[page].path}`, name: pages[page].title, about: { '@id': orgId } }] }).replace(/</g, '\\u003c')
@@ -145,7 +170,9 @@ export function headTags(page) {
     `<meta name="author" content="${NAME}" />`,
     `<meta name="geo.region" content="IN-SK" />`,
     `<meta name="geo.placename" content="Sikkim, India" />`,
-    `<meta property="og:type" content="website" />`,
+    ...(p.post
+      ? [`<meta property="og:type" content="article" />`, `<meta property="article:published_time" content="${p.post.date}" />`, `<meta property="article:author" content="${escAttr(p.post.author)}" />`]
+      : [`<meta property="og:type" content="website" />`]),
     `<meta property="og:site_name" content="${NAME}" />`,
     `<meta property="og:locale" content="en_IN" />`,
     `<meta property="og:url" content="${url}" />`,
@@ -198,7 +225,7 @@ export const sitemapXml = () => {
   const today = new Date().toISOString().slice(0, 10)
   const urls = Object.values(pages)
     .filter((p) => !p.noindex)
-    .map((p, i) => `  <url><loc>${SITE_URL}${p.path}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>${i ? '0.8' : '1.0'}</priority></url>`)
+    .map((p, i) => `  <url><loc>${SITE_URL}${p.path}</loc><lastmod>${p.post ? p.post.modified || p.post.date : today}</lastmod><changefreq>monthly</changefreq><priority>${i ? '0.8' : '1.0'}</priority></url>`)
     .join('\n')
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
 }
@@ -241,10 +268,15 @@ ${projects.map((p) => `- ${p.title} (${p.category})${p.link ? ` ${p.link}` : ''}
 
 ${faqs.map((f) => `### ${f.q}\n${f.a}`).join('\n\n')}
 
+## Blog
+
+${posts.map((p) => `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.description}`).join('\n')}
+
 ## Pages
 
 - [Home](${SITE_URL}/): services, work, offers, FAQ
 - [About](${SITE_URL}/about): story and team
+- [Blog](${SITE_URL}/blog): guides on WhatsApp bots, AI agents, SaaS and CRMs
 - [Contact](${SITE_URL}/contact): WhatsApp, email, LinkedIn
 - [Privacy policy](${SITE_URL}/privacy)
 - [Terms of use](${SITE_URL}/terms)
