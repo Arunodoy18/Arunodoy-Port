@@ -2,14 +2,14 @@
 
 export const brand = {
   name: 'C3 STUDIO',
-  tagline: 'AI, automation & product studio',
-  hours: 'Mon – Sat · 10:00 – 20:00 IST',
-  location: 'Sikkim, India · working worldwide',
+  hours: ['Monday–Saturday', '10:00 – 20:00 IST'],
+  location: ['Sikkim, India', 'Working worldwide'],
 }
 
 // The three ways clients reach us. Every "Let's talk" button points at these.
 export const contact = {
   whatsapp: '918812078591', // international format, digits only
+  whatsappLabel: '+91 88120 78591',
   whatsappText: "Hi! I saw your portfolio and I'd like to build something.",
   email: 'arunodoy630@gmail.com',
   emailSubject: 'New project enquiry',
@@ -21,113 +21,84 @@ export const waLink = (text = contact.whatsappText) =>
 export const mailLink = (subject = contact.emailSubject) =>
   `mailto:${contact.email}?subject=${encodeURIComponent(subject)}`
 
-export const marquee = ['WhatsApp bots', 'AI agents', 'SaaS products', 'Call automation', 'LinkedIn outreach', 'Websites that sell', 'Management systems', 'Custom AI models']
+export const hero = {
+  heading: 'We put AI in everything',
+  pills: ['AI & automation studio', 'Websites to SaaS', 'No fluff, just shipping'],
+  marquee: "LET'S AUTOMATE THE BORING STUFF  •  AI IN EVERYTHING  •  ",
+}
 
-export const manifesto =
-  "Most businesses don't need more software. They need the boring work to disappear. We build the bots, the agents and the products that do it, and we ship them in weeks, not quarters."
+export const about = {
+  label: 'A bit about us',
+  para: "Most businesses don't need more software. They need the boring work to disappear. We build the bots, agents and products that do it, and ship them in weeks.",
+  pills: ['Obsessed with shipping', 'AI-first, always', 'Allergic to templates'],
+}
 
-// Project cards. `cover` is a screenshot in /public/work. `stat` is optional.
+// Showcase strip: images in /public/work or designed tiles ({ tile: 'whatsapp' | 'call' | 'dashboard' | 'code' }).
+export const showcase = [
+  { img: '/work/neurodb-sq.jpg' },
+  { tile: 'whatsapp' },
+  { img: '/work/dbviz-sq.jpg' },
+  { tile: 'call' },
+  { img: '/work/neurodb-sq2.jpg' },
+  { tile: 'dashboard' },
+  { img: '/work/dbviz-sq2.jpg' },
+  { tile: 'code' },
+]
+
+// Project cards. `cover` + `hover` are portrait screenshots; `brush` is the hover paint colour.
 export const projects = [
   {
-    id: 'neurodb',
     title: 'NeuroDB',
-    tags: ['Web apps', 'AI/ML'],
+    category: 'Web apps • AI/ML',
     year: '2026',
-    stat: null,
-    description: 'An AI-powered PostgreSQL tool that lets you query and explore databases using natural language.',
+    description: 'AI-powered PostgreSQL tool that lets you query and explore databases in natural language.',
     link: 'https://neurodb.buildc3.tech/',
-    cover: '/work/neurodb.jpg',
-    color: '#ec4524',
+    cover: '/work/neurodb-tall.jpg',
+    hover: '/work/neurodb-tall2.jpg',
+    brush: '#2a9df4',
+    logo: 'N',
   },
   {
-    id: 'dbviz',
     title: 'DB-Viz',
-    tags: ['Web apps', 'Dev tools'],
+    category: 'Web apps • Dev tools · 6k+ users',
     year: '2026',
-    stat: '6k+ users',
-    description: 'A database schema visualiser that shows every table structure and how the tables connect.',
+    description: 'Database schema visualiser that shows every table and how they connect.',
     link: 'https://dbviz.buildc3.tech/',
-    cover: '/work/dbviz.jpg',
-    color: '#1a1a1a',
+    cover: '/work/dbviz-tall.jpg',
+    hover: '/work/dbviz-tall2.jpg',
+    brush: '#9a8a52',
+    logo: 'D',
   },
 ]
 
-// What we build. `items` are the concrete things a client can buy.
+export const projectsEnd = {
+  para: 'More projects are cooking. Yours could be next.',
+  pills: ['The plot thickens', 'AI inside', 'Built in weeks'],
+  cta: 'Start a project',
+}
+
+// Services: each reads "<a> [animated icon] <b>". icon: whatsapp | linkedin | call | agent | saas | web | system | code
 export const services = [
-  {
-    title: 'AI automations',
-    line: 'Bots that do the repetitive work for you, around the clock.',
-    items: ['WhatsApp automation & chatbots', 'LinkedIn outreach automation', 'AI call agents (inbound & outbound)', 'Lead capture & follow-up flows'],
-  },
-  {
-    title: 'AI agents & models',
-    line: 'AI trained on your business, wired into your tools.',
-    items: ['RAG agents on your own documents', 'Custom & fine-tuned models', 'AI inside your existing product', 'Chrome extensions with AI'],
-  },
-  {
-    title: 'SaaS products',
-    line: 'From idea to paying users: auth, billing, dashboards, the lot.',
-    items: ['MVPs in weeks', 'Course platforms (Udemy-style)', 'Multi-tenant B2B SaaS', 'Subscriptions & payments'],
-  },
-  {
-    title: 'Websites',
-    line: 'Fast, good-looking sites built to turn visitors into clients.',
-    items: ['Business & landing pages', 'Portfolios', 'E-commerce', 'SEO & performance'],
-  },
-  {
-    title: 'Management systems',
-    line: 'One place to run the business instead of ten spreadsheets.',
-    items: ['CRM & lead management', 'School, clinic & inventory systems', 'Internal dashboards', 'Admin panels'],
-  },
-  {
-    title: 'Full-stack engineering',
-    line: 'Front end, back end, cloud. We take the whole thing.',
-    items: ['React / Next.js front ends', 'APIs & databases', 'Cloud deploys & CI/CD', 'Rescue & scale existing apps'],
-  },
+  { a: 'WhatsApp', b: 'Bots', icon: 'whatsapp', para: 'Chatbots that reply, qualify and book on WhatsApp, 24/7.' },
+  { a: 'LinkedIn', b: 'Outreach', icon: 'linkedin', para: 'Automated prospecting and follow-ups that sound like you.' },
+  { a: 'AI', b: 'Calling', icon: 'call', para: 'Voice agents that take and make calls, then log everything.' },
+  { a: 'AI', b: 'Agents', icon: 'agent', para: 'Agents trained on your docs and wired into your tools.' },
+  { a: 'SaaS', b: 'Products', icon: 'saas', para: 'From idea to paying users: auth, billing, dashboards. Even Udemy-style course platforms.' },
+  { a: 'Web', b: 'Design', icon: 'web', para: 'Websites and portfolios that look sharp and turn visitors into clients.' },
+  { a: 'Management', b: 'Systems', icon: 'system', para: 'CRMs, school, clinic and inventory systems: one place to run it all.' },
+  { a: 'Full', b: 'Stack', icon: 'code', para: 'Front end, back end, cloud. We take the whole thing.' },
 ]
 
-// Offers. Set `price` to a string like '₹25,000' or 'From $499' when it's decided;
-// left as null it shows "Custom quote".
+// Offers shown as the rotating card stack. Set `price` to a string like '₹25,000' when decided.
 export const offers = [
-  {
-    name: 'Launch',
-    for: 'Get online and look serious',
-    price: null,
-    timeline: '1 – 2 weeks',
-    includes: ['Website or portfolio, up to 6 pages', 'Mobile-first, fast, SEO-ready', 'WhatsApp & contact buttons wired in', 'Domain & hosting set up'],
-  },
-  {
-    name: 'Automate',
-    for: 'Stop doing the same task twice',
-    price: null,
-    timeline: '1 – 3 weeks',
-    featured: true,
-    includes: ['One WhatsApp, LinkedIn or call bot', 'AI replies trained on your business', 'Leads synced to your sheet or CRM', '30 days of tuning after launch'],
-  },
-  {
-    name: 'Build',
-    for: 'Turn the idea into a product',
-    price: null,
-    timeline: '4 – 8 weeks',
-    includes: ['Full SaaS MVP or management system', 'Login, payments & admin dashboard', 'AI features where they pay off', 'Deployed, monitored, handed over'],
-  },
-  {
-    name: 'Scale',
-    for: 'A team on call, every month',
-    price: null,
-    timeline: 'Monthly',
-    includes: ['Dedicated hours every month', 'New features & automations', 'Maintenance & uptime', 'Priority WhatsApp support'],
-  },
-]
-
-export const process = [
-  { step: 'Say hi', text: 'Message us on WhatsApp, email or LinkedIn with what you need. Rough is fine.' },
-  { step: 'Scope call', text: 'A 20-minute call. You get a fixed scope, a timeline and a price.' },
-  { step: 'We build', text: 'Weekly demos on a live link. You see progress, not promises.' },
-  { step: 'Launch', text: 'We ship it, hand it over and stay on for support.' },
+  { name: 'Launch', for: 'Get online and look serious', price: null, timeline: '1 – 2 weeks', includes: ['Website or portfolio, up to 6 pages', 'Mobile-first, fast, SEO-ready', 'WhatsApp & contact buttons wired in', 'Domain & hosting set up'] },
+  { name: 'Automate', for: 'Stop doing the same task twice', price: null, timeline: '1 – 3 weeks', includes: ['One WhatsApp, LinkedIn or call bot', 'AI replies trained on your business', 'Leads synced to your sheet or CRM', '30 days of tuning after launch'] },
+  { name: 'Build', for: 'Turn the idea into a product', price: null, timeline: '4 – 8 weeks', includes: ['Full SaaS MVP or management system', 'Login, payments & admin dashboard', 'AI features where they pay off', 'Deployed, monitored, handed over'] },
+  { name: 'Scale', for: 'A team on call, every month', price: null, timeline: 'Monthly', includes: ['Dedicated hours every month', 'New features & automations', 'Maintenance & uptime', 'Priority WhatsApp support'] },
 ]
 
 export const faqs = [
+  { q: 'What kind of projects do you take on?', a: 'Anything where software or AI can save you time or make you money: WhatsApp, LinkedIn and call automations, AI agents, SaaS products, websites and management systems.' },
   { q: 'How much does a project cost?', a: 'It depends on scope. After a short call you get a fixed price, so there are no surprises later.' },
   { q: 'How fast can you deliver?', a: 'Websites in 1 – 2 weeks, automations in 1 – 3 weeks, SaaS MVPs in 4 – 8 weeks.' },
   { q: 'Can you add AI to something I already have?', a: 'Yes. We plug AI into existing websites, CRMs, WhatsApp numbers and internal tools.' },
@@ -135,3 +106,8 @@ export const faqs = [
   { q: 'What happens after launch?', a: 'Every project comes with support after launch, and you can move to a monthly plan to keep building.' },
   { q: 'Do I own the code?', a: 'Yes. Once the project is paid for, the code, data and accounts are yours.' },
 ]
+
+export const footer = {
+  heading: "Okay, that's enough website",
+  tagline: 'Built by humans. Powered by AI.',
+}

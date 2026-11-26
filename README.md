@@ -6,20 +6,11 @@ The client-facing site for C3 Studio: AI automations, WhatsApp/LinkedIn/call bot
 
 ## Editing content
 
-All of the copy is in one file, `src/data/site.js`:
+All of the copy is in `src/data/site.js`: hero, about, showcase strip, projects, services, offers (`price: null` shows "Custom quote"), FAQ, footer and contact details.
 
-| Export | What it controls |
-| --- | --- |
-| `brand` | Studio name, hours, location |
-| `contact` | WhatsApp number, email, LinkedIn URL (the LinkedIn button is hidden while it's empty) |
-| `projects` | Work cards: title, tags, year, stat, description, live link, cover image |
-| `services` | The "This is what we build" cards |
-| `offers` | Packages. Set `price` to a string such as `'₹25,000'`; `null` shows "Custom quote" |
-| `process`, `faqs`, `marquee`, `manifesto` | The remaining sections |
-
-Project covers go in `public/work/` (1440×900 screenshots work well).
-
-Links like `/#offers` or `/#work` open straight at that section.
+- Artwork (loader logo, walking characters, cats, swirls, service icons, mascot) is original SVG in `src/art.js`.
+- Motion lives in `src/anim.js`, built on GSAP (ScrollTrigger, SplitText, DrawSVG) and Lenis smooth scrolling.
+- Project screenshots are in `public/work/` (portrait `*-tall.jpg` for cards, `*-sq.jpg` for the showcase strip).
 
 ## Run locally
 
@@ -32,4 +23,4 @@ npm run dev
 
 `netlify.toml` builds with `npm run build` and publishes `dist`. Pushing to `main` deploys.
 
-Built with React 19 and Vite.
+Built with Vite, GSAP and Lenis.
