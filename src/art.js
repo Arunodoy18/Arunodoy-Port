@@ -234,3 +234,22 @@ export const laptop = `
   <g class="lp-bubble b1"><rect x="300" y="6" width="104" height="46" rx="20" fill="#fff" stroke="${K}" stroke-width="5"/><text x="352" y="38" text-anchor="middle" font-size="22" fill="${O}">AI ✓</text></g>
   <g class="lp-bubble b2"><rect x="6" y="20" width="96" height="46" rx="20" fill="${K}"/><text x="54" y="52" text-anchor="middle" font-size="22" fill="#fdf8f5">BOT</text></g>
 </svg>`
+
+/* ------------------------------------------- designed project-card covers */
+const cup = `
+<svg viewBox="0 0 240 240" fill="none" class="cup">
+  <path class="steam s1" d="M92 70C80 54 104 44 92 26" stroke="#fdf8f5" stroke-width="7" stroke-linecap="round"/>
+  <path class="steam s2" d="M122 70C110 54 134 44 122 26" stroke="#fdf8f5" stroke-width="7" stroke-linecap="round"/>
+  <path class="steam s3" d="M152 70C140 54 164 44 152 26" stroke="#fdf8f5" stroke-width="7" stroke-linecap="round"/>
+  <path d="M52 92h140v44a62 62 0 0 1-62 62h-16a62 62 0 0 1-62-62Z" fill="${O}" stroke="${K}" stroke-width="6"/>
+  <path d="M192 108h10a24 24 0 0 1 0 48h-16" stroke="${K}" stroke-width="10" stroke-linecap="round"/>
+  <path d="M30 210h184" stroke="${K}" stroke-width="8" stroke-linecap="round"/>
+  <text x="122" y="158" text-anchor="middle" font-size="44" fill="#fdf8f5">58</text>
+</svg>`
+
+export const covers = {
+  cnr58: {
+    cover: `<div class="ac ac-cnr"><div class="ac-top">Cafe &amp; Restaurant<br>Concord · Sydney</div>${cup}<div class="ac-big">CNR58</div></div>`,
+    hover: `<div class="ac ac-cnr-h"><div class="ac-big">Hospitality<br>CRM</div><div class="ac-top">Built for a Sydney café</div></div>`,
+  },
+}

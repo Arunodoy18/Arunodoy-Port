@@ -8,9 +8,9 @@ import { initAnimations } from './anim'
 const cardHtml = (p) => `
   <a class="project-card" ${p.link ? ext(p.link) : 'href="#contact" data-contact-trigger'}>
     <div class="card-img">
-      <img class="card-cover" src="${p.cover}" alt="${esc(p.title)}" loading="lazy">
+      ${p.coverArt ? `<div class="card-cover art-cover">${art.covers[p.coverArt].cover}</div>` : `<img class="card-cover" src="${p.cover}" alt="${esc(p.title)}" loading="lazy">`}
       ${art.cardBrush(p.brush)}
-      <img class="card-hover" src="${p.hover}" alt="" loading="lazy">
+      ${p.coverArt ? `<div class="card-hover art-hover">${art.covers[p.coverArt].hover}</div>` : `<img class="card-hover" src="${p.hover}" alt="" loading="lazy">`}
     </div>
     <div class="card-detail">
       <div class="card-logo" style="background:${p.brush}">${p.logo}</div>

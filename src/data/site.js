@@ -85,6 +85,16 @@ export const projects = [
     logo: 'M',
   },
   {
+    title: 'CNR58 Cafe & Restaurant',
+    category: 'Hospitality CRM • Sydney',
+    year: '2026',
+    description: 'CRM for CNR58, a cafe and restaurant in Concord, Sydney.',
+    link: null, // no public link: the card opens the contact overlay
+    coverArt: 'cnr58', // designed cover (src/art.js covers). Swap for screenshots via cover/hover when available.
+    brush: '#2b1d16',
+    logo: '58',
+  },
+  {
     title: 'NeuroDB',
     category: 'Web apps • AI/ML · 70k+ users',
     year: '2026',

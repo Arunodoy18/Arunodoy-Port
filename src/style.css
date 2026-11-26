@@ -411,6 +411,21 @@ html.lenis, html.lenis body { height: auto; }
   .tp-name { font-size: 3em; }
 }
 
+
+/* designed card covers */
+.art-cover, .art-hover { overflow: hidden; }
+.ac { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 2em; }
+.ac-cnr { background: #2b1d16; color: var(--white); }
+.ac-cnr .cup { width: 62%; align-self: center; }
+.ac-top { font-size: 1.1em; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; line-height: 1.3; }
+.ac-big { font-family: var(--font-display); font-weight: 900; font-stretch: 62%; text-transform: uppercase; font-size: 6em; line-height: .85; }
+.ac-cnr .ac-big { color: var(--primary); }
+.ac-cnr-h { background: var(--secondary); color: #2b1d16; justify-content: center; gap: 1em; text-align: center; align-items: center; }
+.ac-cnr-h .ac-big { color: #2b1d16; font-size: 4.6em; }
+.cup .steam { animation: steam 2.4s ease-in-out infinite; }
+.cup .s2 { animation-delay: .4s; } .cup .s3 { animation-delay: .8s; }
+@keyframes steam { 0% { opacity: 0; transform: translateY(10px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(-12px); } }
+
 /* ---------- tablet / mobile ---------- */
 @media (max-width: 991px) {
   .nav-links, .nav-timing { display: none; }
