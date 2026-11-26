@@ -6,7 +6,7 @@ import { initAnimations } from './anim'
 
 
 const cardHtml = (p) => `
-  <a class="project-card" ${ext(p.link)}>
+  <a class="project-card" ${p.link ? ext(p.link) : 'href="#contact" data-contact-trigger'}>
     <div class="card-img">
       <img class="card-cover" src="${p.cover}" alt="${esc(p.title)}" loading="lazy">
       ${art.cardBrush(p.brush)}

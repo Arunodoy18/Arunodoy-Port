@@ -41,9 +41,11 @@ export const showcase = [
   { img: '/work/dietbyrd-sq.jpg' },
   { tile: 'call' },
   { img: '/work/dbviz-sq.jpg' },
+  { img: '/work/mfg-sq.jpg' },
   { img: '/work/neurodb-sq2.jpg' },
   { tile: 'dashboard' },
   { img: '/work/dbviz-sq2.jpg' },
+  { img: '/work/mfg-sq2.jpg' },
   { tile: 'code' },
 ]
 
@@ -72,8 +74,19 @@ export const projects = [
     logo: 'RD',
   },
   {
+    title: 'Manufacturing CRM & Supply Chain Suite',
+    category: 'Manufacturing • CRM & ERP',
+    year: '2026',
+    description: 'Custom-built CRM and supply chain platform enabling manufacturers to manage leads, vendor coordination, procurement cycles, inventory movement, and order fulfillment within a structured operational workflow.',
+    link: null, // private client system: the card opens the contact overlay
+    cover: '/work/mfg-tall.jpg',
+    hover: '/work/mfg-tall2.jpg',
+    brush: '#b4232a',
+    logo: 'M',
+  },
+  {
     title: 'NeuroDB',
-    category: 'Web apps • AI/ML',
+    category: 'Web apps • AI/ML · 70k+ users',
     year: '2026',
     description: 'AI-powered PostgreSQL tool that lets you query and explore databases in natural language.',
     link: 'https://neurodb.buildc3.tech/',
