@@ -152,7 +152,7 @@ export const team = [
     ],
   },
   {
-    name: 'Co-founder', // TODO: CEO's full name
+    name: 'Om Gupta',
     role: 'Founder & CEO',
     photo: '/team/ceo.jpg',
     bio: [
