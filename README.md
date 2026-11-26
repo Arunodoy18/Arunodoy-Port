@@ -12,6 +12,13 @@ All of the copy is in `src/data/site.js`: hero, about, showcase strip, projects,
 - Motion lives in `src/anim.js`, built on GSAP (ScrollTrigger, SplitText, DrawSVG) and Lenis smooth scrolling.
 - Project screenshots are in `public/work/` (portrait `*-tall.jpg` for cards, `*-sq.jpg` for the showcase strip).
 
+## SEO, AEO and GEO
+
+- Pages are **prerendered at build time** (`vite.config.js`): the full markup from `src/pages/*.js` goes into the HTML, so search engines, AI crawlers and link previews see the real content.
+- `src/seo.js` generates each page's title, description, canonical URL, Open Graph/Twitter tags and schema.org JSON-LD (ProfessionalService, services and offers, founders, FAQPage, work list), plus `robots.txt`, `sitemap.xml` and `llms.txt`. All of it is built from `src/data/site.js`.
+- **Moving to a custom domain:** change `SITE_URL` in `src/seo.js` (or set the `SITE_URL` env var in Netlify) so canonical URLs, the sitemap and structured data use it.
+- The share image is `public/og.png` (1200×630).
+
 ## Run locally
 
 ```bash

@@ -145,6 +145,8 @@ export const offers = [
 ]
 
 export const faqs = [
+  { q: 'What does C3 Studio do?', a: 'C3 Studio is an AI and automation studio based in Sikkim, India, working with clients worldwide. We build WhatsApp, LinkedIn and AI call automations, AI agents, SaaS products, websites and management systems, end to end.' },
+  { q: 'Who runs C3 Studio?', a: 'C3 Studio was founded by Arunodoy Banerjee (Founder & CTO) and Om Gupta (Founder & CEO), with trusted collaborators brought in when a project needs them.' },
   { q: 'What kind of projects do you take on?', a: 'Anything where software or AI can save you time or make you money: WhatsApp, LinkedIn and call automations, AI agents, SaaS products, websites and management systems.' },
   { q: 'How much does a project cost?', a: 'It depends on scope. After a short call you get a fixed price, so there are no surprises later.' },
   { q: 'How fast can you deliver?', a: 'Websites in 1 – 2 weeks, automations in 1 – 3 weeks, SaaS MVPs in 4 – 8 weeks.' },

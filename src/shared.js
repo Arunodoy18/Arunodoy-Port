@@ -1,6 +1,6 @@
 // Markup shared by every page: loader, header, footer, contact overlay, small helpers.
-import { brand, contact, waLink, mailLink, footer } from './data/site'
-import * as art from './art'
+import { brand, contact, waLink, mailLink, footer } from './data/site.js'
+import * as art from './art.js'
 
 export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
 export const ext = (href) => `href="${href}" target="_blank" rel="noreferrer"`
