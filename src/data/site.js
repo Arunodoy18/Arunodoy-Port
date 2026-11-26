@@ -1,7 +1,7 @@
 // Everything a client reads lives here. Edit this file, not the components.
 
 export const brand = {
-  name: 'BUILDC3',
+  name: 'C3 STUDIO',
   tagline: 'AI, automation & product studio',
   hours: 'Mon – Sat · 10:00 – 20:00 IST',
   location: 'Sikkim, India · working worldwide',

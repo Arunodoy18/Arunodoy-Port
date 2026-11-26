@@ -1,6 +1,6 @@
-# BuildC3: sales portfolio
+# C3 Studio: sales portfolio
 
-The client-facing site for BuildC3: AI automations, WhatsApp/LinkedIn/call bots, AI agents, SaaS products, websites and management systems. Every call to action goes to WhatsApp, email or LinkedIn.
+The client-facing site for C3 Studio: AI automations, WhatsApp/LinkedIn/call bots, AI agents, SaaS products, websites and management systems. Every call to action goes to WhatsApp, email or LinkedIn.
 
 **Live:** https://arunodoy-os.netlify.app (auto-deploys from `main` on Netlify)
 
