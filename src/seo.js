@@ -6,6 +6,11 @@ import { posts } from './data/posts.js'
 // Change this when the site moves to its own domain.
 export const SITE_URL = (process.env.SITE_URL || 'https://c3studio.buildc3.tech').replace(/\/$/, '')
 
+// Search Console / Bing verification tokens (public by design; Google reads them from each page).
+// The Google token can be overridden with the GOOGLE_SITE_VERIFICATION env var.
+const GSC_TOKEN = process.env.GOOGLE_SITE_VERIFICATION || 'S2mFQRe62roIki_4vRx8SpJuTx_CoiLfkQ5CtYJRteQ'
+const BING_TOKEN = process.env.BING_SITE_VERIFICATION || ''
+
 const NAME = 'C3 Studio'
 const OG_IMAGE = `${SITE_URL}/og.png`
 const PHONE = '+' + contact.whatsapp
@@ -158,6 +163,8 @@ export function headTags(page) {
   const url = SITE_URL + p.path
   return [
     `<title>${escAttr(p.title)}</title>`,
+    ...(GSC_TOKEN ? [`<meta name="google-site-verification" content="${escAttr(GSC_TOKEN)}" />`] : []),
+    ...(BING_TOKEN ? [`<meta name="msvalidate.01" content="${escAttr(BING_TOKEN)}" />`] : []),
     `<meta name="description" content="${escAttr(p.description)}" />`,
     ...(p.noindex
       ? [`<meta name="robots" content="noindex, follow" />`]
