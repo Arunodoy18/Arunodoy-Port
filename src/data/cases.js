@@ -20,8 +20,8 @@ export const cases = [
     stats: [['23', 'branches on one platform'], ['11', 'countries'], ['2 months', 'to launch, still growing']],
     link: 'https://blackmontacademy.com/',
     images: [
-      ['/work/blackmont-tall.jpg', 'Blackmont Academy home page: Developing next generation consulting leaders', 728, 1020],
-      ['/work/blackmont-tall2.jpg', 'Blackmont Academy programme page', 728, 1020],
+      ['/work/blackmont-tall.webp', 'Blackmont Academy home page: Developing next generation consulting leaders', 728, 1020],
+      ['/work/blackmont-tall2.webp', 'Blackmont Academy programme page', 728, 1020],
     ],
     challenge: [
       'Blackmont Consulting trains the consultants it puts in front of clients. With 23 branches across 11 countries, every office had been running training its own way: its own material, its own standard and no shared view of who was ready for real client work.',
@@ -57,8 +57,8 @@ export const cases = [
     stats: [['6', 'role-based dashboards'], ['₹999', 'consultations booked and paid online'], ['1', 'platform for patients, dietitians and doctors']],
     link: 'https://dietbyrd.buildc3.tech/',
     images: [
-      ['/work/dietbyrd-tall.jpg', 'Diet By RD home page: your health deserves a Registered Dietitian', 728, 1020],
-      ['/work/dietbyrd-tall2.jpg', 'Diet By RD consultation booking', 728, 1020],
+      ['/work/dietbyrd-tall.webp', 'Diet By RD home page: your health deserves a Registered Dietitian', 728, 1020],
+      ['/work/dietbyrd-tall2.webp', 'Diet By RD consultation booking', 728, 1020],
     ],
     challenge: [
       "Most nutrition advice in India comes from influencers, not qualified professionals. Diet By RD's founders wanted a platform where every single consultation is with a Registered Dietitian.",
@@ -95,10 +95,10 @@ export const cases = [
     stats: [['4', 'core modules: sales, procurement, stock, dispatch'], ['1', 'place to approve every purchase order'], ['Live', 'stock levels and delivery tracking']],
     link: null,
     images: [
-      ['/work/mfg-tall.jpg', 'Sales and customer CRM: pipeline value, active deals and recent account activity', 728, 1020],
-      ['/work/mfg-tall2.jpg', 'Inventory and stock management: real-time stock levels and low-stock alerts', 728, 1020],
-      ['/work/mfg-sq.jpg', 'Procurement and vendor management: purchase orders moving through approval stages', 1000, 1000],
-      ['/work/mfg-sq2.jpg', 'Logistics and dispatch: drivers, ETAs and delivery status', 1000, 1000],
+      ['/work/mfg-tall.webp', 'Sales and customer CRM: pipeline value, active deals and recent account activity', 728, 1020],
+      ['/work/mfg-tall2.webp', 'Inventory and stock management: real-time stock levels and low-stock alerts', 728, 1020],
+      ['/work/mfg-sq.webp', 'Procurement and vendor management: purchase orders moving through approval stages', 1000, 1000],
+      ['/work/mfg-sq2.webp', 'Logistics and dispatch: drivers, ETAs and delivery status', 1000, 1000],
     ],
     challenge: [
       'A growing food manufacturer was running sales, purchasing, stock and dispatch as separate jobs, tracked in separate places. Purchase orders waited on approvals, and nobody had one view of an order from the first lead to the final delivery.',

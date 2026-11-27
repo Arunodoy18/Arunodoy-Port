@@ -30,6 +30,7 @@ export async function initAnimations(page = 'home') {
     } else if (href.startsWith('/')) sessionStorage.setItem('c3nav', '1')
   })
 
+  imageFadeIn()
   await document.fonts.ready
   if (page === 'home') {
     walkers(); hero(); heroMarquee(); about(); showcase(); projects(); cardHover(); services(); offersStack(); faq()
@@ -279,6 +280,15 @@ function projects() {
 }
 
 /* ---------------------------- card hover: dual paintbrush stroke reveal */
+// Images fade in once loaded (shimmer placeholder underneath) instead of popping in over grey boxes.
+function imageFadeIn() {
+  $$('img.card-cover, .showcase-slide img, .cs-card-img img, .cs-gallery img, .team-img img').forEach((img) => {
+    const done = () => img.classList.add('is-loaded')
+    if (img.complete && img.naturalWidth) done()
+    else { img.addEventListener('load', done, { once: true }); img.addEventListener('error', done, { once: true }) }
+  })
+}
+
 function cardHover() {
   const D = $('.card-brush path').getAttribute('d')
   $$('.project-card').forEach((card, i) => {
@@ -291,9 +301,16 @@ function cardHover() {
       const svg = document.createElementNS(ns, 'svg')
       svg.setAttribute('class', 'card-mask'); svg.setAttribute('viewBox', '0 0 709 1012'); svg.setAttribute('preserveAspectRatio', 'xMidYMid slice')
       svg.innerHTML = `<defs><mask id="cm${i}" maskUnits="userSpaceOnUse" x="-200" y="-200" width="1109" height="1412"><path d="${D}" stroke="#fff" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" fill="none"/></mask></defs>
-        <image href="${hover.getAttribute('src')}" x="0" y="0" width="709" height="1012" preserveAspectRatio="xMidYMin slice" mask="url(#cm${i})"/>`
+        <image x="0" y="0" width="709" height="1012" preserveAspectRatio="xMidYMin slice" mask="url(#cm${i})"/>`
       wrap.appendChild(svg)
       maskPath = $('mask path', svg)
+      // Load the hover screenshot only after this card's cover is in, so covers never queue behind hover images.
+      const img = $('image', svg), cover = $('img.card-cover', wrap)
+      let started = false
+      const loadHover = () => { if (!started) { started = true; img.setAttribute('href', hover.getAttribute('src')) } }
+      if (!cover || (cover.complete && cover.naturalWidth)) setTimeout(loadHover, 300)
+      else cover.addEventListener('load', () => setTimeout(loadHover, 300), { once: true })
+      card.addEventListener('mouseenter', loadHover, { once: true })
       gsap.set(maskPath, { drawSVG: '100% 100%', strokeWidth: 0 })
     } else {
       gsap.set(hover, { display: 'flex', position: 'absolute', inset: 0, zIndex: 3, opacity: 0, scale: 0.9 })
