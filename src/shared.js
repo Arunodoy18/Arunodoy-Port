@@ -10,7 +10,7 @@ export const cta = (text, cls = '') =>
 export const secHeader = (label, heading, cls = '') =>
   `<div class="sec-header ${cls}"><div class="sec-label">${esc(label)}</div><div class="sec-heading-wrap"><h2 class="sec-heading">${heading}</h2></div></div>`
 
-const NAV = [['Work', '/#work'], ['Services', '/#services'], ['Offers', '/#offers'], ['About us', '/about'], ['Blog', '/blog']]
+const NAV = [['Work', '/#work'], ['Case studies', '/case-studies'], ['Services', '/#services'], ['Offers', '/#offers'], ['About us', '/about'], ['Blog', '/blog']]
 
 export const layout = (main) => `
 <div class="loader"><div class="loader-bg">${art.loaderBg}</div><div class="loader-inner">${art.loaderLogo}</div></div>
