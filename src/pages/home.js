@@ -5,7 +5,7 @@ import * as art from '../art.js'
 
 
 const cardHtml = (p) => `
-  <a class="project-card" ${p.link ? ext(p.link) : 'href="#contact" data-contact-trigger'}>
+  <a class="project-card" ${p.caseStudy ? `href="/case-studies/${p.caseStudy}"` : p.link ? ext(p.link) : 'href="#contact" data-contact-trigger'}>
     <div class="card-img">
       ${p.coverArt ? `<div class="card-cover art-cover">${art.covers[p.coverArt].cover}</div>` : `<img class="card-cover" src="${p.cover}" alt="${esc(p.title)}: ${esc(p.category)}" width="728" height="1020" loading="lazy" decoding="async">`}
       ${art.cardBrush(p.brush)}

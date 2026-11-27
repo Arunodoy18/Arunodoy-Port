@@ -9,3 +9,5 @@ dist
 # generated at build time from src/data/posts.js
 blog/
 blog.html
+case-studies/
+case-studies.html

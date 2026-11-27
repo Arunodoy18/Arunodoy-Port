@@ -3,6 +3,7 @@ import { resolve, dirname } from 'node:path'
 import { pathToFileURL, fileURLToPath } from 'node:url'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { posts } from './src/data/posts.js'
+import { cases } from './src/data/cases.js'
 
 const root = dirname(fileURLToPath(import.meta.url))
 
@@ -18,6 +19,16 @@ function writeBlogEntries() {
 }
 const blogInputs = writeBlogEntries()
 
+// Case studies: /case-studies (case-studies.html) and /case-studies/<slug>. Generated (gitignored); edit src/data/cases.js.
+function writeCaseEntries() {
+  const shell = readFileSync(resolve(root, 'index.html'), 'utf8').replace('/src/main.js', '/src/case.js')
+  mkdirSync(resolve(root, 'case-studies'), { recursive: true })
+  writeFileSync(resolve(root, 'case-studies.html'), shell.replace('<body>', '<body data-page="cases">'))
+  for (const c of cases) writeFileSync(resolve(root, 'case-studies', `${c.slug}.html`), shell.replace('<body>', `<body data-page="case:${c.slug}">`))
+  return [['cases', resolve(root, 'case-studies.html')], ...cases.map((c) => [`case-${c.slug}`, resolve(root, 'case-studies', `${c.slug}.html`)])]
+}
+const caseInputs = writeCaseEntries()
+
 // Prerender: put each page's full markup + SEO head tags into the HTML at build time,
 // so search engines, AI crawlers and link previews see real content without running JS.
 function prerender() {
@@ -28,13 +39,16 @@ function prerender() {
     configureServer(s) { server = s },
     async transformIndexHtml(html, ctx) {
       const name = ctx.path.replace(/^\//, '').replace(/\.html$/, '').replace(/\/$/, '/index') || 'index'
-      const page = name === 'index' ? 'home' : name === 'blog/index' || name === 'blog' ? 'blog' : name.startsWith('blog/') ? `post:${name.slice(5)}` : name
+      const page = name === 'index' ? 'home' : name === 'blog/index' || name === 'blog' ? 'blog' : name.startsWith('blog/') ? `post:${name.slice(5)}`
+        : name === 'case-studies' ? 'cases' : name.startsWith('case-studies/') ? `case:${name.slice(13)}` : name
       const seo = await load('/src/seo.js')
       let body
       if (page === 'home') body = (await load('/src/pages/home.js')).homeHtml()
       else if (page === 'about') body = (await load('/src/pages/about.js')).aboutHtml()
       else if (page === 'blog') body = (await load('/src/pages/blog.js')).blogIndexHtml()
       else if (page.startsWith('post:')) body = (await load('/src/pages/blog.js')).postHtml(page.slice(5))
+      else if (page === 'cases') body = (await load('/src/pages/case.js')).casesIndexHtml()
+      else if (page.startsWith('case:')) body = (await load('/src/pages/case.js')).caseHtml(page.slice(5))
       else body = (await load('/src/pages/doc.js')).docHtml(page)
       return html.replace('<!--seo-->', seo.headTags(page)).replace('<div id="app"></div>', `<div id="app">${body}</div>`)
     },
@@ -53,6 +67,7 @@ export default defineConfig({
       input: {
         ...Object.fromEntries(['index', 'about', 'contact', 'privacy', 'terms', 'review', '404'].map((n) => [n === 'index' ? 'main' : n, resolve(root, `${n}.html`)])),
         ...Object.fromEntries(blogInputs),
+        ...Object.fromEntries(caseInputs),
       },
     },
   },

@@ -53,6 +53,7 @@ export const showcase = [
 export const projects = [
   {
     title: 'Blackmont Academy',
+    caseStudy: 'blackmont-academy', // card opens /case-studies/blackmont-academy (see src/data/cases.js)
     category: 'Edtech • Spain · 11 countries',
     year: '2026',
     description: 'Training platform for Blackmont Consulting: one system replacing branch-led training across 23 branches in 11 countries. Built with Axon Studio.',
@@ -64,6 +65,7 @@ export const projects = [
   },
   {
     title: 'Diet By RD',
+    caseStudy: 'diet-by-rd', // card opens /case-studies/diet-by-rd (see src/data/cases.js)
     category: 'Health-tech • India',
     year: '2026',
     description: "India's first clinical nutrition platform where every consultation is with a Registered Dietitian. Built for a client in Bihar.",
@@ -75,6 +77,7 @@ export const projects = [
   },
   {
     title: 'Manufacturing CRM & Supply Chain Suite',
+    caseStudy: 'manufacturing-crm', // card opens /case-studies/manufacturing-crm (see src/data/cases.js)
     category: 'Manufacturing • CRM & ERP',
     year: '2026',
     description: 'Custom-built CRM and supply chain platform enabling manufacturers to manage leads, vendor coordination, procurement cycles, inventory movement, and order fulfillment within a structured operational workflow.',

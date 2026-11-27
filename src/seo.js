@@ -2,6 +2,7 @@
 // Everything is generated at build time from src/data/site.js (see vite.config.js).
 import { brand, contact, hero, about, services, offers, projects, faqs, team, aboutPage } from './data/site.js'
 import { posts } from './data/posts.js'
+import { cases } from './data/cases.js'
 
 // Change this when the site moves to its own domain.
 export const SITE_URL = (process.env.SITE_URL || 'https://c3studio.buildc3.tech').replace(/\/$/, '')
@@ -64,6 +65,13 @@ pages.blog = {
   title: 'Blog | C3 Studio: AI, Automation & SaaS Guides',
   description: 'Practical guides on WhatsApp bots, AI agents, SaaS and custom software from the C3 Studio team.',
 }
+pages.cases = {
+  path: '/case-studies',
+  title: 'Case Studies | C3 Studio: Platforms, CRMs & AI Products',
+  description: 'How C3 Studio built a training platform for 23 branches, a clinical nutrition platform and a manufacturing CRM. Real clients, real systems.',
+}
+for (const c of cases)
+  pages[`case:${c.slug}`] = { path: `/case-studies/${c.slug}`, title: c.seoTitle, description: c.description, caseStudy: c }
 for (const p of posts)
   pages[`post:${p.slug}`] = { path: `/blog/${p.slug}`, title: p.seoTitle || p.title, description: p.description, post: p }
 
@@ -152,6 +160,22 @@ export function jsonLd(page) {
       publisher: { '@id': orgId }, isPartOf: { '@id': `${SITE_URL}/blog#blog` } }
     const crumbs = { '@type': 'BreadcrumbList', itemListElement: [['Home', '/'], ['Blog', '/blog'], [p.title, `/blog/${p.slug}`]].map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE_URL + path })) }
     return JSON.stringify({ '@context': 'https://schema.org', '@graph': [organization, ...(author ? [personNode(author)] : []), article, crumbs] }).replace(/</g, '\\u003c')
+  }
+  if (page === 'cases' || page.startsWith('case:')) {
+    const crumbs = [['Home', '/'], ['Case studies', '/case-studies']]
+    let main
+    if (page === 'cases') {
+      main = { '@type': 'CollectionPage', '@id': `${SITE_URL}/case-studies#page`, url: `${SITE_URL}/case-studies`, name: pages.cases.title, about: { '@id': orgId },
+        hasPart: cases.map((c) => ({ '@type': 'Article', headline: c.headline, url: `${SITE_URL}/case-studies/${c.slug}` })) }
+    } else {
+      const c = pages[page].caseStudy, url = `${SITE_URL}/case-studies/${c.slug}`
+      crumbs.push([c.title, `/case-studies/${c.slug}`])
+      main = { '@type': 'Article', '@id': `${url}#article`, mainEntityOfPage: url, url, headline: c.headline, name: c.title, description: c.description,
+        inLanguage: 'en', keywords: c.tags.join(', '), image: `${SITE_URL}${c.images[0][0]}`, author: { '@id': orgId }, publisher: { '@id': orgId },
+        about: { '@type': 'CreativeWork', name: c.title, creator: { '@id': orgId }, ...(c.link ? { url: c.link } : {}) } }
+    }
+    const bc = { '@type': 'BreadcrumbList', itemListElement: crumbs.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE_URL + path })) }
+    return JSON.stringify({ '@context': 'https://schema.org', '@graph': [organization, website, main, bc] }).replace(/</g, '\\u003c')
   }
   if (!['home', 'about'].includes(page)) {
     const type = page === 'contact' ? 'ContactPage' : 'WebPage'
@@ -285,10 +309,15 @@ ${faqs.map((f) => `### ${f.q}\n${f.a}`).join('\n\n')}
 
 ${posts.map((p) => `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.description}`).join('\n')}
 
+## Case studies
+
+${cases.map((c) => `- [${c.title}](${SITE_URL}/case-studies/${c.slug}): ${c.description}`).join('\n')}
+
 ## Pages
 
 - [Home](${SITE_URL}/): services, work, offers, FAQ
 - [About](${SITE_URL}/about): story and team
+- [Case studies](${SITE_URL}/case-studies): detailed write-ups of client projects
 - [Blog](${SITE_URL}/blog): guides on WhatsApp bots, AI agents, SaaS and CRMs
 - [Contact](${SITE_URL}/contact): WhatsApp, email, LinkedIn
 - [Privacy policy](${SITE_URL}/privacy)
