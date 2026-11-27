@@ -565,3 +565,43 @@ html.lenis, html.lenis body { height: auto; }
 
 /* Until JS has fonts loaded and text split, keep the page hidden under the loader so nothing shifts (CLS). */
 .js:not(.ready) .header, .js:not(.ready) main, .js:not(.ready) .footer { visibility: hidden; }
+
+/* ---------------------------------------------------- testimonials (home) */
+.testimonials { display: flex; flex-direction: column; align-items: center; gap: 3em; padding: 6em 0 2em; }
+.tm-list { width: 100%; max-width: var(--size-container); display: grid; grid-template-columns: repeat(auto-fit, minmax(22em, 1fr)); gap: 1.5em; padding: 0 1.25em; }
+.tm-card { display: flex; flex-direction: column; gap: 1.4em; margin: 0; padding: 2.2em; border-radius: 1.5em; background: var(--secondary); transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), background .3s; }
+.tm-card:hover { transform: rotate(-1deg) translateY(-.3em); background: var(--accent); }
+.tm-stars { color: var(--primary); font-size: 1.3em; letter-spacing: .1em; }
+.tm-stars span { opacity: .25; }
+.tm-quote { margin: 0; flex: 1; font-size: 1.35em; line-height: 1.35; font-weight: 500; }
+.tm-quote::before { content: '“'; display: block; height: .55em; font-family: var(--font-display); font-weight: 900; font-size: 3.2em; line-height: 1; color: var(--primary); }
+.tm-by { display: flex; align-items: center; gap: .9em; }
+.tm-avatar { flex: none; width: 2.8em; height: 2.8em; border-radius: 50%; display: grid; place-items: center; background: var(--primary); color: var(--white); font-family: var(--font-display); font-weight: 900; font-stretch: 62%; font-size: 1.2em; text-transform: uppercase; }
+.tm-name { font-family: var(--font-display); font-weight: 900; font-stretch: 62%; text-transform: uppercase; font-size: 1.6em; line-height: 1; }
+.tm-meta { opacity: .65; margin-top: .2em; }
+.tm-foot { display: flex; justify-content: space-between; gap: 1em; padding-top: 1em; border-top: 1px solid rgba(0, 0, 0, .1); font-size: .9em; opacity: .7; }
+@media (max-width: 767px) { .tm-list { grid-template-columns: 1fr; } .tm-card { padding: 1.6em; } }
+
+/* ------------------------------------------------------- review form page */
+.rv-form { display: flex; flex-direction: column; gap: 1.2em; margin-top: 2em; }
+.rv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+.rv-f { display: flex; flex-direction: column; gap: .4em; border: 0; padding: 0; margin: 0; min-width: 0; }
+.rv-f > span, .rv-f > legend { font-weight: 600; font-size: .9em; padding: 0; }
+.rv-f input, .rv-f select, .rv-f textarea { font: inherit; color: var(--black); background: var(--white); border: 2px solid transparent; border-radius: .8em; padding: .75em 1em; outline: none; transition: border-color .2s; width: 100%; }
+.rv-f textarea { resize: vertical; min-height: 8em; }
+.rv-f input:focus, .rv-f select:focus, .rv-f textarea:focus { border-color: var(--primary); }
+.rv-star-row { display: inline-flex; flex-direction: row-reverse; justify-content: flex-end; gap: .15em; }
+.rv-star-row input { position: absolute; opacity: 0; pointer-events: none; }
+.rv-star-row label { font-size: 2.2em; line-height: 1; cursor: pointer; color: rgba(0, 0, 0, .15); transition: color .15s, transform .2s; }
+.rv-star-row label:hover { transform: scale(1.15); }
+.rv-star-row input:checked ~ label, .rv-star-row label:hover, .rv-star-row label:hover ~ label { color: var(--primary); }
+.rv-star-row input:focus-visible + label { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+.rv-check { display: flex; gap: .7em; align-items: flex-start; font-size: .95em; line-height: 1.4; cursor: pointer; }
+.rv-check input { accent-color: var(--primary); width: 1.15em; height: 1.15em; margin-top: .15em; flex: none; }
+.rv-submit { align-self: flex-start; border: 0; cursor: pointer; font: inherit; font-size: 1.3em; margin-top: .5em; }
+.rv-submit:disabled { opacity: .5; cursor: wait; }
+.rv-hp { position: absolute; left: -9999px; }
+.rv-form[hidden], .rv-done[hidden], .rv-error[hidden] { display: none; }
+.rv-error { color: #c0392b; font-weight: 500; }
+.rv-done h2 { margin-top: 1em; }
+@media (max-width: 767px) { .rv-row { grid-template-columns: 1fr; } }

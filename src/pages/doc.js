@@ -1,9 +1,9 @@
 // Contact, Privacy, Terms and 404 pages. Pure strings: rendered at build time (prerender) and in the browser.
-import { brand, contact, waLink, mailLink } from '../data/site.js'
+import { brand, contact, waLink, mailLink, projects } from '../data/site.js'
 import { esc, ext, pill, cta, layout } from '../shared.js'
 import * as art from '../art.js'
 
-const UPDATED = '26 November 2026'
+const UPDATED = '27 November 2026'
 
 const shell = ({ title, pills = [], body, art: side = '' }) => `
   <section class="doc"><div class="doc-wrap">
@@ -45,8 +45,10 @@ const docs = {
         <h2>Who we are</h2>
         <p>C3 Studio is an AI and automation studio based in ${esc(brand.location[0])}. You can reach us at <a href="${mailLink('Privacy question')}">${esc(contact.email)}</a> or on WhatsApp at ${esc(contact.whatsappLabel)}.</p>
         <h2>What this website collects</h2>
-        <p>Nothing directly. There are no forms, accounts, cookies, analytics or advertising trackers on this site. Fonts and images are served from our own hosting.</p>
-        <p>Our hosting provider, Netlify, keeps standard server logs (such as IP address, browser type and the page requested) to run and secure the service. See <a ${ext('https://www.netlify.com/privacy/')}>Netlify's privacy policy</a>.</p>
+        <p>Very little. There are no accounts, cookies or advertising trackers on this site. Fonts and images are served from our own hosting.</p>
+        <p>Our hosting provider, Netlify, keeps standard server logs (such as IP address, browser type and the page requested) to run and secure the service. We use Netlify Analytics, which counts visits from those server logs without cookies or tracking scripts, to see which pages are read. See <a ${ext('https://www.netlify.com/privacy/')}>Netlify's privacy policy</a>.</p>
+        <h2>Client reviews</h2>
+        <p>Clients we've worked with can send us a review through a private form. It collects the name, role, company, project, rating and review they enter, stored with Netlify Forms. We publish a review only if the client ticks the consent box, and we take it down on request.</p>
         <h2>When you contact us</h2>
         <p>If you email us, message us on WhatsApp or connect on LinkedIn, we receive what you choose to send, such as your name, contact details and project information. We use it only to reply, prepare proposals and deliver work you've asked for. Those platforms also process your messages under their own privacy policies.</p>
         <h2>Sharing and storage</h2>
@@ -77,6 +79,45 @@ const docs = {
         <p>These terms are governed by the laws of India.</p>
         <h2>Contact</h2>
         <p>Questions about these terms: <a href="${mailLink('Terms question')}">${esc(contact.email)}</a>.</p>`,
+    }),
+
+  // Private page: only reachable from the link we send clients (not in nav, noindex, not in sitemap).
+  // Submissions go to Netlify Forms (form name "testimonial"); approved ones are added to testimonials in src/data/site.js.
+  review: () =>
+    shell({
+      title: 'How did<br>we do?',
+      pills: ['Takes 2 minutes', 'Thank you!'],
+      art: art.bot,
+      body: `
+        <p class="doc-lead">Thanks for building with us. A few honest lines about working with C3 Studio help the next client decide, and help us get better.</p>
+        <form class="rv-form" name="testimonial" method="POST" action="/review?sent=1" data-netlify="true" netlify-honeypot="company-website">
+          <input type="hidden" name="form-name" value="testimonial">
+          <p class="rv-hp"><label>Leave this empty <input name="company-website" tabindex="-1" autocomplete="off"></label></p>
+          <div class="rv-row">
+            <label class="rv-f"><span>Your name *</span><input name="name" required autocomplete="name" maxlength="80"></label>
+            <label class="rv-f"><span>Your role</span><input name="role" placeholder="Founder, Manager…" autocomplete="organization-title" maxlength="80"></label>
+          </div>
+          <div class="rv-row">
+            <label class="rv-f"><span>Company *</span><input name="company" required autocomplete="organization" maxlength="100"></label>
+            <label class="rv-f"><span>Project *</span><select name="project" required>
+              <option value="">Choose one</option>
+              ${projects.map((p) => `<option>${esc(p.title)}</option>`).join('')}
+              <option>Something else</option>
+            </select></label>
+          </div>
+          <fieldset class="rv-f rv-stars"><legend>Your rating *</legend>
+            <div class="rv-star-row">${[5, 4, 3, 2, 1].map((n) => `<input type="radio" id="rv-s${n}" name="rating" value="${n}" required${n === 5 ? ' checked' : ''}><label for="rv-s${n}" title="${n} star${n > 1 ? 's' : ''}">★</label>`).join('')}</div>
+          </fieldset>
+          <label class="rv-f"><span>Your review *</span><textarea name="quote" required rows="6" minlength="20" maxlength="800" placeholder="What did we build, how was working with us, and what changed for your business?"></textarea></label>
+          <label class="rv-check"><input type="checkbox" name="consent" value="yes" required><span>I agree that C3 Studio can show my review, name, role and company on its website and social pages.</span></label>
+          <button class="cta-btn rv-submit" type="submit"><span class="cta-text">Send my review</span><span class="cta-arrow">${art.arrow}</span><span class="cta-fill"></span></button>
+          <p class="rv-error" hidden>Something went wrong. Please try again, or send your review on <a ${ext(waLink('Hi! Here is my review for C3 Studio:'))}>WhatsApp</a>.</p>
+        </form>
+        <div class="rv-done" hidden>
+          <h2>Thank you!</h2>
+          <p>Your review is with us. We'll let you know when it's live on the site.</p>
+          <div class="doc-links"><a class="doc-link" href="/">Visit C3 Studio</a></div>
+        </div>`,
     }),
 
   404: () =>

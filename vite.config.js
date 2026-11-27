@@ -51,7 +51,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        ...Object.fromEntries(['index', 'about', 'contact', 'privacy', 'terms', '404'].map((n) => [n === 'index' ? 'main' : n, resolve(root, `${n}.html`)])),
+        ...Object.fromEntries(['index', 'about', 'contact', 'privacy', 'terms', 'review', '404'].map((n) => [n === 'index' ? 'main' : n, resolve(root, `${n}.html`)])),
         ...Object.fromEntries(blogInputs),
       },
     },

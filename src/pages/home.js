@@ -1,5 +1,5 @@
 // Home page markup. Pure strings: runs in the browser and at build time (prerender).
-import { waLink, hero, about, showcase, projects, projectsEnd, services, offers, faqs } from '../data/site.js'
+import { waLink, hero, about, showcase, projects, projectsEnd, services, offers, faqs, testimonials } from '../data/site.js'
 import { esc, ext, pill, cta, secHeader as header, layout, tiles } from '../shared.js'
 import * as art from '../art.js'
 
@@ -42,6 +42,25 @@ const offerCard = (o) => `
     </div>
   </div></div>`
 
+const fmtMonth = (d) => new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' })
+
+const reviewCard = (t) => `
+  <figure class="tm-card">
+    <div class="tm-stars" aria-label="${t.rating} out of 5 stars">${'★'.repeat(t.rating)}<span>${'★'.repeat(5 - t.rating)}</span></div>
+    <blockquote class="tm-quote">${esc(t.quote)}</blockquote>
+    <figcaption class="tm-by">
+      <div class="tm-avatar">${esc(t.name.trim()[0])}</div>
+      <div><div class="tm-name">${esc(t.name)}</div><div class="tm-meta">${esc([t.role, t.company].filter(Boolean).join(', '))}</div></div>
+    </figcaption>
+    <div class="tm-foot"><span>${esc(t.project)}</span><time datetime="${t.date}">${fmtMonth(t.date)}</time></div>
+  </figure>`
+
+const testimonialsHtml = () => (testimonials.length ? `
+  <section class="testimonials" id="reviews">
+    ${header('Testimonials', 'What clients say')}
+    <div class="tm-list">${testimonials.map(reviewCard).join('')}</div>
+  </section>` : '')
+
 export const homeHtml = () => layout(`
   <section class="hero"><div class="hero-wrap">
     <div class="hero-text">
@@ -75,7 +94,7 @@ export const homeHtml = () => layout(`
       ${cta(projectsEnd.cta, 'pe-btn')}
     </div></div>
   </section>
-
+  ${testimonialsHtml()}
   <section class="services" id="services">
     ${header('Our Services', 'This is what we build')}
     <div class="services-body">

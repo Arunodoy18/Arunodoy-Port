@@ -156,6 +156,11 @@ export const faqs = [
   { q: 'Do I own the code?', a: 'Yes. Once the project is paid for, the code, data and accounts are yours.' },
 ]
 
+// Client reviews shown on the home page ("What clients say"). The section stays hidden while this is empty.
+// Clients submit at /review (Netlify Forms > "testimonial"); copy approved ones here, newest first.
+// { name: 'Jane Doe', role: 'Founder', company: 'Acme', project: 'Diet By RD', rating: 5, date: '2026-11-27', quote: '...' }
+export const testimonials = []
+
 export const footer = {
   heading: "Okay, that's enough website",
   tagline: 'Built by humans. Powered by AI.',

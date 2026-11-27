@@ -45,6 +45,12 @@ export const pages = {
     title: 'Terms of Use | C3 Studio',
     description: 'The terms for using the C3 Studio website. Client projects are covered by a separate written proposal or agreement.',
   },
+  review: {
+    path: '/review',
+    title: 'Leave a review | C3 Studio',
+    description: 'Share a few lines about working with C3 Studio.',
+    noindex: true,
+  },
   404: {
     path: '/404',
     title: 'Page not found | C3 Studio',
