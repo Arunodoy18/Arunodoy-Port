@@ -3,7 +3,7 @@
 export const brand = {
   name: 'C3 STUDIO',
   hours: ['Monday–Saturday', '10:00 – 20:00 IST'],
-  location: ['Gangtok, Sikkim, India', 'Working worldwide'],
+  location: ['Sikkim, India', 'Working worldwide'],
 }
 
 // The three ways clients reach us. Every "Let's talk" button points at these.
@@ -148,7 +148,7 @@ export const offers = [
 ]
 
 export const faqs = [
-  { q: 'What does C3 Studio do?', a: 'C3 Studio is an AI and automation studio based in Gangtok, Sikkim, India, working with clients worldwide. We build WhatsApp, LinkedIn and AI call automations, AI agents, SaaS products, websites and management systems, end to end.' },
+  { q: 'What does C3 Studio do?', a: 'C3 Studio is an AI and automation studio based in Sikkim, India, working with clients worldwide. We build WhatsApp, LinkedIn and AI call automations, AI agents, SaaS products, websites and management systems, end to end.' },
   { q: 'Who runs C3 Studio?', a: 'C3 Studio was founded by Arunodoy Banerjee (Founder & CTO) and Om Gupta (Founder & CEO), with trusted collaborators brought in when a project needs them.' },
   { q: 'What kind of projects do you take on?', a: 'Anything where software or AI can save you time or make you money: WhatsApp, LinkedIn and call automations, AI agents, SaaS products, websites and management systems.' },
   { q: 'How much does a project cost?', a: 'It depends on scope. After a short call you get a fixed price, so there are no surprises later.' },
@@ -173,7 +173,7 @@ export const footer = {
 export const aboutPage = {
   heading: ['Small studio,', 'big AI energy'],
   pills: ['AI & automation studio', 'Independent'],
-  intro: 'Founded in Gangtok, Sikkim, in 2026 by two builders, C3 Studio brings together AI engineering, product thinking and full-stack development.',
+  intro: 'Founded in Sikkim by two builders, C3 Studio brings together AI engineering, product thinking and full-stack development.',
   story: [
     {
       label: 'How we started',
