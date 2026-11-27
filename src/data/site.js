@@ -11,7 +11,7 @@ export const contact = {
   whatsapp: '918812078591', // international format, digits only
   whatsappLabel: '+91 88120 78591',
   whatsappText: "Hi! I saw your portfolio and I'd like to build something.",
-  email: 'arunodoy630@gmail.com',
+  email: 'arunodoybuildc3@gmail.com',
   emailSubject: 'New project enquiry',
   linkedin: 'https://www.linkedin.com/in/arunodoy-banerjee/',
 }
