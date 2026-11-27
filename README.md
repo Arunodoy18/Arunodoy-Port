@@ -2,7 +2,7 @@
 
 The client-facing site for C3 Studio: AI automations, WhatsApp/LinkedIn/call bots, AI agents, SaaS products, websites and management systems. Every call to action goes to WhatsApp, email or LinkedIn.
 
-**Live:** https://arunodoy-os.netlify.app (auto-deploys from `main` on Netlify)
+**Live:** https://c3studio.buildc3.tech (official domain; the old arunodoy-os.netlify.app address 301-redirects here). Auto-deploys from `main` on Netlify.
 
 ## Editing content
 

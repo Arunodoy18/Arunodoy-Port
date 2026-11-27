@@ -2,6 +2,13 @@
   command = "npm run build"
   publish = "dist"
 
+# One official address: send the old Netlify subdomain to c3studio.buildc3.tech (avoids duplicate content).
+[[redirects]]
+  from = "https://arunodoy-os.netlify.app/*"
+  to = "https://c3studio.buildc3.tech/:splat"
+  status = 301
+  force = true
+
 # Fingerprinted JS/CSS and fonts never change: cache for a year.
 [[headers]]
   for = "/assets/*"

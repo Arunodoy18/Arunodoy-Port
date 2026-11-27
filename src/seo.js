@@ -4,7 +4,7 @@ import { brand, contact, hero, about, services, offers, projects, faqs, team, ab
 import { posts } from './data/posts.js'
 
 // Change this when the site moves to its own domain.
-export const SITE_URL = (process.env.SITE_URL || 'https://arunodoy-os.netlify.app').replace(/\/$/, '')
+export const SITE_URL = (process.env.SITE_URL || 'https://c3studio.buildc3.tech').replace(/\/$/, '')
 
 const NAME = 'C3 Studio'
 const OG_IMAGE = `${SITE_URL}/og.png`
