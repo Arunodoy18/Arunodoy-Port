@@ -16,14 +16,14 @@ const NAME = 'C3 Studio'
 const OG_IMAGE = `${SITE_URL}/og.png`
 const PHONE = '+' + contact.whatsapp
 const SUMMARY =
-  'C3 Studio is an AI and automation studio in Sikkim, India, working with clients worldwide. We build WhatsApp, LinkedIn and AI call automations, AI agents, SaaS products, websites and management systems, end to end.'
+  'C3 Studio is an AI and automation studio in Gangtok, Sikkim, India, working with clients worldwide. We build WhatsApp, LinkedIn and AI call automations, AI agents, SaaS products, websites and management systems, end to end.'
 
 export const pages = {
   home: {
     path: '/',
     title: 'C3 Studio | AI Automation, Bots & SaaS Development',
     description:
-      'C3 Studio builds WhatsApp, LinkedIn and AI call automations, AI agents, SaaS products and websites. Based in Sikkim, India, working with clients worldwide.',
+      'C3 Studio builds WhatsApp, LinkedIn and AI call automations, AI agents, SaaS products and websites. Based in Gangtok, India, working with clients worldwide.',
   },
   about: {
     path: '/about',
@@ -101,7 +101,9 @@ const organization = {
   slogan: hero.heading,
   email: contact.email,
   telephone: PHONE,
-  address: { '@type': 'PostalAddress', addressRegion: 'Sikkim', addressCountry: 'IN' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Gangtok', addressRegion: 'Sikkim', addressCountry: 'IN' },
+  foundingDate: '2026',
+  foundingLocation: { '@type': 'Place', name: 'Gangtok, Sikkim, India' },
   areaServed: 'Worldwide',
   openingHours: 'Mo-Sa 10:00-20:00',
   founder: people.map((m) => ({ '@id': personNode(m)['@id'] })),
@@ -206,7 +208,7 @@ export function headTags(page) {
         ]),
     `<meta name="author" content="${NAME}" />`,
     `<meta name="geo.region" content="IN-SK" />`,
-    `<meta name="geo.placename" content="Sikkim, India" />`,
+    `<meta name="geo.placename" content="Gangtok, Sikkim, India" />`,
     ...(p.post
       ? [`<meta property="og:type" content="article" />`, `<meta property="article:published_time" content="${p.post.date}" />`, `<meta property="article:author" content="${escAttr(p.post.author)}" />`]
       : [`<meta property="og:type" content="website" />`]),
