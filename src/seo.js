@@ -3,6 +3,7 @@
 import { brand, contact, hero, about, services, offers, projects, faqs, team, aboutPage } from './data/site.js'
 import { posts } from './data/posts.js'
 import { cases } from './data/cases.js'
+import { industries } from './data/industries.js'
 
 // Change this when the site moves to its own domain.
 export const SITE_URL = (process.env.SITE_URL || 'https://c3studio.buildc3.tech').replace(/\/$/, '')
@@ -70,6 +71,8 @@ pages.cases = {
   title: 'Case Studies | C3 Studio: Platforms, CRMs & AI Products',
   description: 'How C3 Studio built a training platform for 23 branches, a clinical nutrition platform and a manufacturing CRM. Real clients, real systems.',
 }
+for (const d of industries)
+  pages[`industry:${d.slug}`] = { path: `/for/${d.slug}`, title: d.seoTitle, description: d.description, industry: d }
 for (const c of cases)
   pages[`case:${c.slug}`] = { path: `/case-studies/${c.slug}`, title: c.seoTitle, description: c.description, caseStudy: c }
 for (const p of posts)
@@ -160,6 +163,14 @@ export function jsonLd(page) {
       publisher: { '@id': orgId }, isPartOf: { '@id': `${SITE_URL}/blog#blog` } }
     const crumbs = { '@type': 'BreadcrumbList', itemListElement: [['Home', '/'], ['Blog', '/blog'], [p.title, `/blog/${p.slug}`]].map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE_URL + path })) }
     return JSON.stringify({ '@context': 'https://schema.org', '@graph': [organization, ...(author ? [personNode(author)] : []), article, crumbs] }).replace(/</g, '\\u003c')
+  }
+  if (page.startsWith('industry:')) {
+    const d = pages[page].industry, url = `${SITE_URL}/for/${d.slug}`
+    const service = { '@type': 'Service', '@id': `${url}#service`, name: d.seoTitle.split(' | ')[0], description: d.description, url, provider: { '@id': orgId },
+      areaServed: d.slug.startsWith('uk') ? { '@type': 'Country', name: 'United Kingdom' } : { '@type': 'Country', name: 'United States' }, audience: { '@type': 'BusinessAudience', name: d.name } }
+    const faq = { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: d.faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }
+    const bc = { '@type': 'BreadcrumbList', itemListElement: [['Home', '/'], [d.name, `/for/${d.slug}`]].map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE_URL + path })) }
+    return JSON.stringify({ '@context': 'https://schema.org', '@graph': [organization, website, service, faq, bc] }).replace(/</g, '\\u003c')
   }
   if (page === 'cases' || page.startsWith('case:')) {
     const crumbs = [['Home', '/'], ['Case studies', '/case-studies']]
@@ -308,6 +319,10 @@ ${faqs.map((f) => `### ${f.q}\n${f.a}`).join('\n\n')}
 ## Blog
 
 ${posts.map((p) => `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.description}`).join('\n')}
+
+## Industries we serve
+
+${industries.map((d) => `- [${d.name}](${SITE_URL}/for/${d.slug}): ${d.description}`).join('\n')}
 
 ## Case studies
 

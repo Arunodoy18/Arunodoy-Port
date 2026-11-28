@@ -1,5 +1,5 @@
 // Markup shared by every page: loader, header, footer, contact overlay, small helpers.
-import { brand, contact, waLink, mailLink, footer } from './data/site.js'
+import { brand, contact, waLink, mailLink, bookLink, footer } from './data/site.js'
 import * as art from './art.js'
 
 export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -50,6 +50,7 @@ export const layout = (main) => `
   <div class="contact-content">
     <div class="contact-left"><h2 class="contact-heading">want to start a new project?</h2><p class="contact-para">or just say hello! We reply within a few hours.</p></div>
     <div class="contact-right">
+      <div class="email-heading">Book a call</div><a class="email-link book-link" ${contact.bookingUrl ? ext(bookLink()) : `href="${bookLink()}"`}>Pick a time →</a>
       <div class="email-heading">Projects &amp; enquiries</div><a class="email-link" href="${mailLink()}">${esc(contact.email)}</a>
       <div class="email-heading">WhatsApp us</div><a class="email-link" ${ext(waLink())}>${esc(contact.whatsappLabel)}</a>
       <div class="contact-socials"><a class="contact-social" ${ext(contact.linkedin)}><span>LinkedIn</span></a><a class="contact-social" ${ext(waLink())}><span>WhatsApp</span></a><a class="contact-social" href="${mailLink()}"><span>Email</span></a></div>

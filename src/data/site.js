@@ -14,12 +14,17 @@ export const contact = {
   email: 'arunodoybuildc3@gmail.com',
   emailSubject: 'New project enquiry',
   linkedin: 'https://www.linkedin.com/in/arunodoy-banerjee/',
+  // Booking link for "Book a call" (e.g. a free Calendly link). Until it's set, the button opens a pre-filled email.
+  bookingUrl: '',
 }
 
 export const waLink = (text = contact.whatsappText) =>
   `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(text)}`
 export const mailLink = (subject = contact.emailSubject) =>
   `mailto:${contact.email}?subject=${encodeURIComponent(subject)}`
+export const bookLink = (subject = 'Book a call') =>
+  contact.bookingUrl ||
+  `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Hi Arunodoy,\n\nI'd like to book a 15-minute call. A few times that work for me (with my time zone):\n\n- \n- \n\nThanks,\n")}`
 
 export const hero = {
   heading: 'We put AI in everything',
