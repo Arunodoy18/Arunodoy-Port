@@ -50,7 +50,7 @@ const docs = {
         <h2>Client reviews</h2>
         <p>Clients we've worked with can send us a review through a private form. It collects the name, role, company, project, rating and review they enter, stored with Netlify Forms. We publish a review only if the client ticks the consent box, and we take it down on request.</p>
         <h2>When you contact us</h2>
-        <p>If you email us, message us on WhatsApp or connect on LinkedIn, we receive what you choose to send, such as your name, contact details and project information. We use it only to reply, prepare proposals and deliver work you've asked for. Those platforms also process your messages under their own privacy policies.</p>
+        <p>If you email us, message us on WhatsApp or connect on LinkedIn, we receive what you choose to send, such as your name, contact details and project information. We use it only to reply, prepare proposals and deliver work you've asked for. Those platforms also process your messages under their own privacy policies. If you book a call, Calendly handles the booking and the details you enter, under <a ${ext('https://calendly.com/privacy')}>its own privacy policy</a>.</p>
         <h2>Sharing and storage</h2>
         <p>We don't sell or rent personal information. We share it only with tools we need to do the work (for example email and project tools), or when the law requires it. We keep project correspondence for as long as the working relationship needs it, then delete it on request.</p>
         <h2>Your choices</h2>

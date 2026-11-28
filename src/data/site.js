@@ -15,7 +15,7 @@ export const contact = {
   emailSubject: 'New project enquiry',
   linkedin: 'https://www.linkedin.com/in/arunodoy-banerjee/',
   // Booking link for "Book a call" (e.g. a free Calendly link). Until it's set, the button opens a pre-filled email.
-  bookingUrl: '',
+  bookingUrl: 'https://calendly.com/arunodoybuildc3/c3-studio',
 }
 
 export const waLink = (text = contact.whatsappText) =>
