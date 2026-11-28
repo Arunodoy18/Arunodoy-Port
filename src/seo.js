@@ -171,7 +171,7 @@ export function jsonLd(page) {
       const c = pages[page].caseStudy, url = `${SITE_URL}/case-studies/${c.slug}`
       crumbs.push([c.title, `/case-studies/${c.slug}`])
       main = { '@type': 'Article', '@id': `${url}#article`, mainEntityOfPage: url, url, headline: c.headline, name: c.title, description: c.description,
-        inLanguage: 'en', keywords: c.tags.join(', '), image: `${SITE_URL}${c.images[0][0]}`, author: { '@id': orgId }, publisher: { '@id': orgId },
+        inLanguage: 'en', keywords: c.tags.join(', '), image: c.images.length ? `${SITE_URL}${c.images[0][0]}` : OG_IMAGE, author: { '@id': orgId }, publisher: { '@id': orgId },
         about: { '@type': 'CreativeWork', name: c.title, creator: { '@id': orgId }, ...(c.link ? { url: c.link } : {}) } }
     }
     const bc = { '@type': 'BreadcrumbList', itemListElement: crumbs.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE_URL + path })) }

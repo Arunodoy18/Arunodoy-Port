@@ -431,6 +431,21 @@ html.lenis, html.lenis body { height: auto; }
 .ac-cnr-h .ac-big { color: #2b1d16; font-size: 4.6em; }
 .cup .steam { animation: steam 2.4s ease-in-out infinite; }
 .cup .s2 { animation-delay: .4s; } .cup .s3 { animation-delay: .8s; }
+.ac-rd { background: #1f7a55; color: var(--white); }
+.ac-rd .bowl { width: 70%; align-self: center; overflow: visible; }
+.ac-rd .ac-big { color: var(--white); font-size: 5.2em; }
+.bowl .leaf { transform-box: fill-box; transform-origin: 50% 100%; animation: leaf-sway 3s ease-in-out infinite; }
+.bowl .l2 { animation-delay: .5s; } .bowl .l3 { animation-delay: 1s; }
+.bowl .pulse { stroke-dasharray: 320; stroke-dashoffset: 320; animation: pulse-draw 2.6s ease-in-out infinite; }
+@keyframes leaf-sway { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+@keyframes pulse-draw { 0% { stroke-dashoffset: 320; opacity: 1; } 60% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+.ac-rd-h { background: var(--secondary); color: #1f7a55; justify-content: center; gap: 1.4em; }
+.ac-rd-h .ac-big { font-size: 4.2em; }
+.ac-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.ac-tile { display: flex; align-items: center; gap: .6em; background: #fff; border: 2px solid var(--black); border-radius: .8em; padding: .7em .8em; font-weight: 600; color: var(--black); box-shadow: 2px 3px 0 var(--black); }
+.ac-tile span { flex: none; width: 1.1em; height: 1.1em; border-radius: 50%; background: #1f7a55; }
+.ac-tile.on { background: #1f7a55; color: #fff; } .ac-tile.on span { background: var(--white); }
+@media (prefers-reduced-motion: reduce) { .bowl .leaf, .bowl .pulse { animation: none; stroke-dashoffset: 0; } }
 @keyframes steam { 0% { opacity: 0; transform: translateY(10px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(-12px); } }
 
 
@@ -649,3 +664,11 @@ html.lenis, html.lenis body { height: auto; }
 .js img.card-cover, .js .showcase-slide img, .js .cs-card-img img, .js .cs-gallery img, .js .team-img img { opacity: 0; transition: opacity .6s ease; }
 .js img.is-loaded { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .card-img, .showcase-slide, .cs-card-img, .team-img { animation: none !important; } }
+
+/* designed covers inside case-study cards and galleries */
+.cs-art { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.cs-card-img .cs-art { font-size: .42em; }
+.cs-gallery-art { max-width: 36em; }
+.cs-gallery-art figure .cs-art { aspect-ratio: 728 / 1020; border-radius: 1em; border: 2px solid var(--black); box-shadow: 3px 4px 0 var(--black); font-size: .62em; }
+.cs-gallery[hidden] { display: none; }
+@media (max-width: 767px) { .cs-gallery-art figure .cs-art { font-size: .55em; } }

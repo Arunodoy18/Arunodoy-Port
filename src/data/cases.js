@@ -54,18 +54,16 @@ export const cases = [
       ['Scope', 'Product, design, full-stack build'],
       ['Stack', 'React, TypeScript, Node.js, PostgreSQL, Razorpay'],
     ],
-    stats: [['6', 'role-based dashboards'], ['₹999', 'consultations booked and paid online'], ['1', 'platform for patients, dietitians and doctors']],
-    link: 'https://dietbyrd.buildc3.tech/',
-    images: [
-      ['/work/dietbyrd-tall.webp', 'Diet By RD home page: your health deserves a Registered Dietitian', 728, 1020],
-      ['/work/dietbyrd-tall2.webp', 'Diet By RD consultation booking', 728, 1020],
-    ],
+    stats: [['6', 'role-based dashboards'], ['1', 'platform for patients, dietitians and doctors'], ['Online', 'booking and payments built in']],
+    link: null, // not public yet (client's request): no live link, no screenshots
+    art: 'dietbyrd', // designed illustration instead of screenshots (src/art.js covers)
+    images: [],
     challenge: [
       "Most nutrition advice in India comes from influencers, not qualified professionals. Diet By RD's founders wanted a platform where every single consultation is with a Registered Dietitian.",
       'That meant much more than a landing page. Patients needed to book and pay, dietitians needed tools to plan diets and follow up, doctors needed to refer patients, and the team needed to run support, payments and quality checks, all in one product.',
     ],
     built: [
-      ['Booking and payments', 'Patients book a ₹999 consultation and pay online with Razorpay. Coupons, and a gift flow so people can gift a consultation to family and friends.'],
+      ['Booking and payments', 'Patients book a consultation and pay online with Razorpay. Coupons, and a gift flow so people can gift a consultation to family and friends.'],
       ['Six dashboards, one product', 'Separate, role-based workspaces for patients, dietitians, doctors, admins, the support team and interns.'],
       ['Dietitian tools', 'Schedules and bookable slots, patient records, a diet-plan builder backed by a food library, and diet charts exported as PDFs.'],
       ['Doctor referrals', 'Doctors refer patients, follow their progress and see their own analytics, with collaboration fees tracked by the platform.'],
@@ -73,7 +71,7 @@ export const cases = [
       ['Reminders and support', 'Automated reminders, email and calling integrations, a support desk, reviews and full legal pages.'],
     ],
     outcome: [
-      'Diet By RD is live as one platform for patients, dietitians, doctors and the team behind them.',
+      'Diet By RD runs as one platform for patients, dietitians, doctors and the team behind them.',
       'We keep shipping in rounds with the client: each round of feedback becomes new features, from bookable slots and regional languages to admin tools for moving sessions between dietitians.',
     ],
   },

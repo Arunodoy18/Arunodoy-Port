@@ -38,7 +38,6 @@ export const showcase = [
   { img: '/work/blackmont-sq.webp', alt: 'Blackmont Academy website by C3 Studio' },
   { tile: 'whatsapp' },
   { img: '/work/neurodb-sq.webp', alt: 'NeuroDB AI PostgreSQL assistant landing page' },
-  { img: '/work/dietbyrd-sq.webp', alt: 'Diet By RD clinical nutrition platform' },
   { tile: 'call' },
   { img: '/work/dbviz-sq.webp', alt: 'DB-Viz database schema visualiser' },
   { img: '/work/mfg-sq.webp', alt: 'Manufacturing CRM procurement and vendor dashboard' },
@@ -68,10 +67,9 @@ export const projects = [
     caseStudy: 'diet-by-rd', // card opens /case-studies/diet-by-rd (see src/data/cases.js)
     category: 'Health-tech • India',
     year: '2026',
-    description: "India's first clinical nutrition platform where every consultation is with a Registered Dietitian. Built for a client in Bihar.",
-    link: 'https://dietbyrd.buildc3.tech/',
-    cover: '/work/dietbyrd-tall.webp',
-    hover: '/work/dietbyrd-tall2.webp',
+    description: "India's first clinical nutrition platform where every consultation is with a Registered Dietitian.",
+    link: null, // not public yet: no live link or screenshots (client's request)
+    coverArt: 'dietbyrd', // designed cover (src/art.js covers)
     brush: '#1f7a55',
     logo: 'RD',
   },

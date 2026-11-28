@@ -247,7 +247,28 @@ const cup = `
   <text x="122" y="158" text-anchor="middle" font-size="44" fill="#fdf8f5">58</text>
 </svg>`
 
+// Diet By RD: a nutrition bowl with swaying leaves and a heartbeat line (no client screenshots: not public yet).
+const bowl = `
+<svg viewBox="0 0 260 240" fill="none" class="bowl">
+  <path class="pulse" d="M14 40h56l12-22 16 44 14-30 10 8h124" stroke="#fdf8f5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g class="leaf l1"><path d="M96 126C74 104 80 76 108 70c10 26 6 44-12 56Z" fill="#8fd18a" stroke="${K}" stroke-width="5"/></g>
+  <g class="leaf l2"><path d="M140 122c-6-30 12-52 40-48 2 28-12 44-40 48Z" fill="#5fb85a" stroke="${K}" stroke-width="5"/></g>
+  <g class="leaf l3"><path d="M118 120c-8-24 2-46 22-56 10 22 4 42-22 56Z" fill="#b9e6a8" stroke="${K}" stroke-width="5"/></g>
+  <circle cx="176" cy="112" r="16" fill="${O}" stroke="${K}" stroke-width="5"/>
+  <circle cx="78" cy="116" r="12" fill="#ffd166" stroke="${K}" stroke-width="5"/>
+  <path d="M40 120h180a8 8 0 0 1 8 9 98 98 0 0 1-98 81 98 98 0 0 1-98-81 8 8 0 0 1 8-9Z" fill="#fdf8f5" stroke="${K}" stroke-width="6"/>
+  <text x="130" y="178" text-anchor="middle" font-size="40" fill="#1f7a55" class="display-svg">RD</text>
+  <path d="M70 226h120" stroke="${K}" stroke-width="8" stroke-linecap="round"/>
+</svg>`
+
+const dashTiles = ['Patient', 'Dietitian', 'Doctor', 'Admin', 'Support', 'Intern']
+  .map((t, i) => `<div class="ac-tile${i === 1 ? ' on' : ''}"><span></span>${t}</div>`).join('')
+
 export const covers = {
+  dietbyrd: {
+    cover: `<div class="ac ac-rd"><div class="ac-top">Clinical nutrition<br>Health-tech · India</div>${bowl}<div class="ac-big">Diet By RD</div></div>`,
+    hover: `<div class="ac ac-rd-h"><div class="ac-big">6 dashboards,<br>1 platform</div><div class="ac-tiles">${dashTiles}</div></div>`,
+  },
   cnr58: {
     cover: `<div class="ac ac-cnr"><div class="ac-top">Cafe &amp; Restaurant<br>Concord · Sydney</div>${cup}<div class="ac-big">CNR58</div></div>`,
     hover: `<div class="ac ac-cnr-h"><div class="ac-big">Hospitality<br>CRM</div><div class="ac-top">Built for a Sydney café</div></div>`,
